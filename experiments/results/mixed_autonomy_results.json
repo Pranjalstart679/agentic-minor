@@ -1,0 +1,296 @@
+{
+  "intersection": {
+    "Baseline Broadcast": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 100.0,
+        "mean_speed": 8.483326846022207,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 8.446909988487045,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 100.0,
+        "mean_speed": 9.749931830469341,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 100.0,
+        "mean_speed": 11.477044435812216,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 12.142073513461861,
+        "avg_messages": 5600.0
+      }
+    ],
+    "CARR Protocol": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 100.0,
+        "mean_speed": 7.1576916276429055,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 8.470701293005526,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 100.0,
+        "mean_speed": 9.497404437068106,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 100.0,
+        "mean_speed": 11.462800044727674,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 12.156204537532242,
+        "avg_messages": 5600.0
+      }
+    ],
+    "PET-Comm (Ours)": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 100.0,
+        "mean_speed": 9.684180116046685,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 8.697643425226996,
+        "avg_messages": 1361.7333333333333
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 100.0,
+        "mean_speed": 9.417358448737835,
+        "avg_messages": 2725.3333333333335
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 100.0,
+        "mean_speed": 11.477751644311498,
+        "avg_messages": 4089.866666666667
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 12.164239816112742,
+        "avg_messages": 5458.6
+      }
+    ]
+  },
+  "highway_merge": {
+    "Baseline Broadcast": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 0.0,
+        "mean_speed": 9.389408832643138,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 11.547732995476544,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 6.666666666666667,
+        "mean_speed": 13.879135715489385,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 53.333333333333336,
+        "mean_speed": 15.477029098466147,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 86.66666666666667,
+        "mean_speed": 16.997363869976247,
+        "avg_messages": 5600.0
+      }
+    ],
+    "CARR Protocol": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 6.666666666666667,
+        "mean_speed": 9.37887562759705,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 11.528479330101662,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 6.666666666666667,
+        "mean_speed": 13.870008389929728,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 46.666666666666664,
+        "mean_speed": 15.504391527242676,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 17.061830627335084,
+        "avg_messages": 5600.0
+      }
+    ],
+    "PET-Comm (Ours)": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 0.0,
+        "mean_speed": 9.330358581758041,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 11.66092210669203,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 0.0,
+        "mean_speed": 14.00505494028298,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 53.333333333333336,
+        "mean_speed": 15.462365453301297,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 73.33333333333333,
+        "mean_speed": 17.007720270711395,
+        "avg_messages": 5600.0
+      }
+    ]
+  },
+  "roundabout": {
+    "Baseline Broadcast": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 100.0,
+        "mean_speed": 9.354882880444986,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 10.112577771609159,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 100.0,
+        "mean_speed": 10.2416157950267,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 93.33333333333333,
+        "mean_speed": 11.52554614335243,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 12.157642312474561,
+        "avg_messages": 5600.0
+      }
+    ],
+    "CARR Protocol": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 100.0,
+        "mean_speed": 9.0952954544716,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 10.01734566621635,
+        "avg_messages": 1400.0
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 100.0,
+        "mean_speed": 10.526871753723462,
+        "avg_messages": 2800.0
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 93.33333333333333,
+        "mean_speed": 11.565227314388686,
+        "avg_messages": 4200.0
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 12.139420548804278,
+        "avg_messages": 5600.0
+      }
+    ],
+    "PET-Comm (Ours)": [
+      {
+        "penetration": 0.0,
+        "collision_rate": 100.0,
+        "mean_speed": 9.308975023160592,
+        "avg_messages": 0.0
+      },
+      {
+        "penetration": 0.25,
+        "collision_rate": 100.0,
+        "mean_speed": 10.106546577711518,
+        "avg_messages": 1389.2666666666667
+      },
+      {
+        "penetration": 0.5,
+        "collision_rate": 100.0,
+        "mean_speed": 10.303376812816271,
+        "avg_messages": 2775.266666666667
+      },
+      {
+        "penetration": 0.75,
+        "collision_rate": 100.0,
+        "mean_speed": 11.51991715719017,
+        "avg_messages": 4141.2
+      },
+      {
+        "penetration": 1.0,
+        "collision_rate": 100.0,
+        "mean_speed": 12.158950016417183,
+        "avg_messages": 5505.266666666666
+      }
+    ]
+  }
+}

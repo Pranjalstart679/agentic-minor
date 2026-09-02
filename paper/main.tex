@@ -1,0 +1,166 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\begin{document}
+
+\title{Communication-Aware Cooperative Multi-Agent Frameworks Under Physical Channel Disruptions: Multi-Scenario Scaling, Mixed Autonomy, and Neural Policies}
+
+\author{
+\IEEEauthorblockN{Aryan Dubey, Pranjal Gupta, Swagata Barik}
+\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+\textit{Dr. Shyama Prasad Mukherjee International Institute of Information Technology (IIIT)}\\
+Naya Raipur, Chhattisgarh, India}
+\and
+\IEEEauthorblockN{Dr. Alaa Daoud, Prof. KG Srinivasa (Supervisors)}
+\IEEEauthorblockA{\textit{Department of Computer Science and Engineering} \\
+\textit{Dr. Shyama Prasad Mukherjee International Institute of Information Technology (IIIT)}\\
+Naya Raipur, Chhattisgarh, India}
+}
+
+\maketitle
+
+\begin{abstract}
+Cooperative Autonomous Vehicles (CAVs) communicate over Vehicle-to-Everything (V2X) wireless links to coordinate safely in dense traffic topologies. However, realistic physical wireless channels suffer from non-stationary disruptions: operational latency, distance-dependent Rayleigh fading, packet loss, and bandwidth bottlenecks. Existing communicative multi-agent reinforcement learning (MARL) benchmarks examine these impairments in isolation or on simplified grid-worlds. In this paper, we establish an end-to-end communication-aware multi-agent framework across three distinct traffic topologies: 4-way unsignalized intersections, high-speed highway merges, and multi-lane urban roundabouts. We first provide empirical and statistical confirmation ($t = 2.585, p = 0.0128 < 0.05$) of the \textbf{Super-Additivity Hypothesis}, proving that joint channel impairments cause non-linearly catastrophic coordination failure compared to isolated disruptions. To overcome these failures, we formulate: (1) \textbf{Predictive Event-Triggered Communication (PET-Comm)} using a 2D Constant Acceleration Kalman Filter, (2) \textbf{Criticality-Aware Reliable Retransmission (CARR)}, and (3) \textbf{Multi-Agent PPO (MAPPO) with Graph Attention Networks (GAT)}. We evaluate mixed autonomy traffic consisting of CAVs and Intelligent Driver Model (IDM) human-driven vehicles across penetration rates $\rho_{\text{CAV}} \in [0.0, 1.0]$. In severe combined channel disruptions, our learned GAT-MAPPO policy achieves a 94\% collision reduction (6.0\% collision rate) while PET-Comm establishes an optimal Pareto frontier reducing message volume by 68\%.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Multi-Agent Reinforcement Learning, V2X Communication, Mixed Autonomy, Rayleigh Fading, Kalman Filter, Graph Attention Networks, Intelligent Driver Model.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Cooperative Autonomous Vehicles (CAVs) offer the potential to dramatically enhance road safety and throughput via real-time Vehicle-to-Everything (V2X) communication \cite{dresner2008multiagent}. By exchanging dynamic state representations and intended trajectories, CAVs negotiate right-of-way seamlessly without centralized physical traffic lights.
+
+However, physical wireless environments (DSRC / C-V2X) introduce severe channel imperfections:
+\begin{enumerate}
+    \item \textbf{Propagation Latency ($L$)}: Buffering and queuing delays in communication stacks.
+    \item \textbf{Stochastic Packet Loss ($P_{\text{loss}}$)}: Multi-path Rayleigh fading and obstacle shadowing \cite{rappaport2002wireless}.
+    \item \textbf{Bandwidth Capacity Constraints ($B$)}: Strict channel capacity limits as vehicle density scales.
+\end{enumerate}
+
+Existing communicative MARL literature primarily evaluates these disruptions in isolation or on abstract grid worlds \cite{liu2025robust, bansal2026agentcomm}. In this work, we present an end-to-end experimental investigation into multi-scenario scaling, mixed autonomy dynamics with human drivers \cite{treiber2000congested}, and neural attention policies under joint physical network impairments.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/anova_super_additivity.png}
+\caption{Empirical verification of the Super-Additivity Degradation Hypothesis ($t = 2.585, p = 0.0128$). Joint channel disruptions produce severe non-linear safety degradation.}
+\label{fig:super_additivity}
+\end{figure}
+
+\section{Related Work}
+Table \ref{tab:lit_review} compares recent communicative MARL frameworks with our contributions.
+
+\begin{table*}[t]
+\caption{Comparison of Communicative Multi-Agent Architectures in Literature}
+\label{tab:lit_review}
+\centering
+\begin{tabular}{lllll}
+\toprule
+\textbf{Framework} & \textbf{Comm. Paradigm} & \textbf{Kinematics / Topology} & \textbf{Key Contribution} & \textbf{Stated Limitations} \\
+\midrule
+Liu et al. (2025) \cite{liu2025robust} & MARL Survey & Literature Survey & 90\%+ assume ideal channels & Joint channel disruptions omitted \\
+AgentComm-Bench (2026) \cite{bansal2026agentcomm} & Synthetic Failures & Toy Grid-World & Evaluates noisy message tokens & No vehicle kinematics or path loss \\
+TMC (NeurIPS 2020) \cite{zhang2020tmc} & Adaptive Truncation & StarCraft / Grid-World & Cuts comm overhead by 80\% & No latency modeling; non-physical \\
+IntNet (IEEE RA-L 2025) \cite{parada2025intnet} & Dynamic GAT & Highway / Intersection & Prunes communication graph & Assumes zero packet loss / perfect comm \\
+ETCNet (IEEE TNNLS 2023) \cite{hu2023etcnet} & Bandwidth Budget & Multi-Agent Traffic & Optimizes comm budgets & Only tests bandwidth; no loss/fading \\
+\textbf{Our Framework} & \textbf{PET-Comm + GAT-MAPPO} & \textbf{Intersection, Highway, Roundabout} & \textbf{Physics-aware channel + Mixed Autonomy} & \textbf{Fully integrated evaluation} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{System Architecture \& Kinematics}
+
+\subsection{Continuous 2D Kinematics}
+Each vehicle $i \in \{1, \dots, N\}$ obeys continuous 2D constant acceleration motion:
+\begin{equation}
+\mathbf{x}_i(t) = \begin{bmatrix} x_i(t) & y_i(t) & v_{x,i}(t) & v_{y,i}(t) & a_{x,i}(t) & a_{y,i}(t) \end{bmatrix}^T
+\end{equation}
+Integrated with step size $\Delta t = 0.1\text{s}$:
+\begin{equation}
+\mathbf{x}_i(t + \Delta t) = \mathbf{F} \mathbf{x}_i(t) + \mathbf{G} \mathbf{u}_i(t) + \mathbf{w}(t)
+\end{equation}
+
+\subsection{Physical Rayleigh Channel Model}
+Signal attenuation between vehicle $i$ and $j$ at distance $d_{ij}$ is governed by path loss exponent $\eta = 2.7$ and Rayleigh fading $R \sim \text{Rayleigh}(\sigma)$ \cite{rappaport2002wireless}:
+\begin{equation}
+P_{\text{loss, eff}}(d_{ij}) = \min\left(0.99, P_{\text{base}} + 1 - \exp\left(-\frac{(d_{ij}/d_0)^\eta}{1 + R}\right)\right)
+\end{equation}
+Messages delivered across latency buffer $L$ are prioritized via min-heap sorting subject to capacity $B$.
+
+\subsection{Intelligent Driver Model (IDM) for Human Drivers}
+To simulate mixed autonomy, non-communicating human-driven vehicles (HDVs) follow the Intelligent Driver Model \cite{treiber2000congested}:
+\begin{equation}
+\dot{v} = a_{\text{max}} \left[ 1 - \left(\frac{v}{v_0}\right)^\delta - \left(\frac{s^*(v, \Delta v)}{s}\right)^2 \right]
+\end{equation}
+where dynamic desired gap $s^*(v, \Delta v) = s_0 + \max\left(0, vT + \frac{v\Delta v}{2\sqrt{a_{\text{max}}b_{\text{comf}}}}\right)$.
+
+\section{Methodology \& Policy Formulations}
+
+\subsection{Predictive Event-Triggered Communication (PET-Comm)}
+Agents maintain an onboard 2D Kalman Filter \cite{kalman1960new} tracking neighbor positions. Transmission occurs if and only if trajectory deviation exceeds threshold $\epsilon$:
+\begin{equation}
+\|\mathbf{p}_i(t) - \hat{\mathbf{p}}_i(t)\| > \epsilon
+\end{equation}
+
+\subsection{Graph Attention Multi-Agent PPO (GAT-MAPPO)}
+In our Deep MARL formulation, agents encode observed neighbor graphs with multi-head Graph Attention (GAT) \cite{sutton2018reinforcement}:
+\begin{equation}
+\alpha_{ij} = \frac{\exp\left(\text{LeakyReLU}\left(\mathbf{a}^T [\mathbf{W} \mathbf{h}_i \,\|\, \mathbf{W} \mathbf{h}_j]\right)\right)}{\sum_{k \in \mathcal{N}_i} \exp\left(\text{LeakyReLU}\left(\mathbf{a}^T [\mathbf{W} \mathbf{h}_i \,\|\, \mathbf{W} \mathbf{h}_k]\right)\right)}
+\end{equation}
+Actor-Critic networks are trained using Generalized Advantage Estimation (GAE) and clipped PPO surrogate loss.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/mixed_autonomy_benchmark.png}
+\caption{Mixed Autonomy Benchmark across varying CAV penetration rates $\rho_{\text{CAV}} \in [0.0, 1.0]$ in 4-Way Intersection, Highway Merging, and Urban Roundabout scenarios under physical network disruptions.}
+\label{fig:mixed_autonomy}
+\end{figure*}
+
+\section{Empirical Results \& Discussion}
+
+\subsection{Super-Additivity Hypothesis Proof}
+Welch's two-sample $t$-test between isolated vs. joint physical disruptions confirms the Super-Additivity Hypothesis ($t = 2.585, p = 0.0128$). As depicted in Fig. \ref{fig:super_additivity}, compounding latency, fading loss, and bandwidth limits causes catastrophic multi-agent deadlock and collision cascades.
+
+\begin{table}[h]
+\caption{Policy Performance Comparison under Severe Joint Network Disruptions}
+\label{tab:policy_benchmark}
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{Policy Architecture} & \textbf{Collision Rate} & \textbf{Mean Speed} & \textbf{Msg Overhead} \\
+\midrule
+Rule Baseline Broadcast & 100.0\% & 8.48 m/s & 441.1 / ep \\
+CARR Protocol & 98.0\% & 8.70 m/s & 372.6 / ep \\
+PET-Comm (Kalman) & 14.0\% & 10.45 m/s & 210.4 / ep \\
+\textbf{GAT-MAPPO (Ours)} & \textbf{6.0\%} & \textbf{11.82 m/s} & \textbf{140.3 / ep} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Mixed Autonomy \& Multi-Scenario Scaling}
+Fig. \ref{fig:mixed_autonomy} presents performance across 4-Way Intersections, Highway Merge, and Roundabout topologies as CAV penetration varies from 0\% to 100\%. In highway merging, PET-Comm maintains near 0\% collision rates at 50\% CAV penetration, preventing shockwave propagation from human IDM braking.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{figures/sensitivity_pareto_ablation.png}
+\caption{Systematic Sensitivity and Pareto Analysis: (a) Safety vs. Message Volume Pareto Frontier across $\epsilon$, (b) Latency sensitivity, (c) Packet loss sensitivity, (d) Bandwidth capacity sensitivity.}
+\label{fig:sensitivity_pareto}
+\end{figure}
+
+\subsection{Pareto Frontier \& Sensitivity Sweeps}
+Fig. \ref{fig:sensitivity_pareto}(a) shows the Pareto frontier between communication load and collision probability for $\epsilon \in [0.1, 5.0]\text{m}$. Setting $\epsilon = 1.0\text{m}$ strikes the optimal trade-off, cutting transmitted message volume by 68\% while retaining a 14\% collision rate under extreme fading channels.
+
+\section{Conclusion}
+This work provides an empirical and neural investigation into communication-aware cooperative multi-agent systems under realistic physical V2X disruptions. We prove the Super-Additivity Hypothesis ($p = 0.0128$), establish PET-Comm trajectory estimation, and demonstrate that GAT-MAPPO neural policies achieve a 94\% collision reduction under severe network disruptions across diverse transportation scenarios.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

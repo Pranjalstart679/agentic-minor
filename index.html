@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication-Aware Cooperative Multi-Agent Frameworks</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background-color: #3b82f6;
+            border: 3px solid #1e293b;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-slate-800 border-b border-slate-700 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-blue-600 rounded-lg">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold text-white tracking-wide">Communication-Aware Cooperative Agents</h1>
+                    <p class="text-xs text-slate-400">Semester 5 Minor Project | IIIT Naya Raipur</p>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="px-3 py-1 bg-green-500/10 text-green-400 border border-green-500/20 rounded-full text-xs font-semibold">Option 4 End-to-End Hybrid</span>
+                <span class="text-xs text-slate-400">Team: Aryan, Pranjal, Swagata</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Executive Summary Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Super-Additivity Proof</p>
+                <p class="text-2xl font-bold text-green-400 mt-1">p = 0.0128</p>
+                <p class="text-xs text-slate-400 mt-1">Welch's t-test (t = 2.585)</p>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">MAPPO Deep RL Safety</p>
+                <p class="text-2xl font-bold text-emerald-400 mt-1">6.0%</p>
+                <p class="text-xs text-slate-400 mt-1">94% Safety Improvement</p>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Pareto Message Reduction</p>
+                <p class="text-2xl font-bold text-blue-400 mt-1">68.0%</p>
+                <p class="text-xs text-slate-400 mt-1">Optimal Trade-off (&epsilon;=1.0m)</p>
+            </div>
+            <div class="bg-slate-800 p-5 rounded-xl border border-slate-700">
+                <p class="text-xs font-medium text-slate-400 uppercase tracking-wider">Unit Test Coverage</p>
+                <p class="text-2xl font-bold text-indigo-400 mt-1">100% (19/19)</p>
+                <p class="text-xs text-slate-400 mt-1">Pytest Suite Verified</p>
+            </div>
+        </section>
+
+        <!-- Interactive Navigation Tabs -->
+        <div class="border-b border-slate-700">
+            <nav class="flex space-x-8" aria-label="Tabs">
+                <button onclick="switchTab('timeline')" id="tab-btn-timeline" class="py-3 px-1 border-b-2 border-blue-500 font-semibold text-sm text-blue-400 flex items-center space-x-2">
+                    <span>Project Timeline & Activity Log</span>
+                </button>
+                <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 hover:border-slate-500 flex items-center space-x-2">
+                    <span>Empirical Experiment Charts</span>
+                </button>
+                <button onclick="switchTab('paper')" id="tab-btn-paper" class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 hover:border-slate-500 flex items-center space-x-2">
+                    <span>IEEE Research Paper (PDF Ready)</span>
+                </button>
+                <button onclick="switchTab('roadmap')" id="tab-btn-roadmap" class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 hover:border-slate-500 flex items-center space-x-2">
+                    <span>Master Roadmap</span>
+                </button>
+            </nav>
+        </div>
+
+        <!-- TAB 1: TIMELINE VIEW -->
+        <section id="tab-timeline" class="space-y-6">
+            <div class="flex justify-between items-center">
+                <h2 class="text-lg font-bold text-white">Chronological Activity & Milestone Log</h2>
+                <div class="flex space-x-2">
+                    <input type="text" id="timeline-search" oninput="filterTimeline()" placeholder="Search activities..." class="bg-slate-800 border border-slate-700 rounded-lg px-3 py-1.5 text-sm text-slate-200 focus:outline-none focus:border-blue-500">
+                </div>
+            </div>
+
+            <div class="relative border-l-2 border-slate-700 ml-4 space-y-8" id="timeline-container">
+
+                <!-- Phase 7 -->
+                <div class="timeline-item pl-6 relative">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-full">Phase 7 Completed</span>
+                                <h3 class="text-base font-bold text-white mt-1">Systematic Sensitivity & Pareto Ablation Grid</h3>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">2026-09-01 00:44 IST</span>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Executed multi-parameter sensitivity sweeps across error threshold &epsilon; &isin; [0.1, 5.0]m, latency L &isin; [0, 5], packet loss P_loss &isin; [0.0, 0.6], bandwidth limits B &isin; [1, 16], and multi-agent density scalability N &isin; [4, 20]. Generated publication-quality Pareto curves and updated IEEE paper.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">experiments/run_sensitivity_ablation_grid.py</span>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">experiments/results/sensitivity_pareto_ablation.png</span>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">experiments/results/density_scalability.png</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 6 -->
+                <div class="timeline-item pl-6 relative">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-full">Phase 6 Completed</span>
+                                <h3 class="text-base font-bold text-white mt-1">Multi-Scenario Scaling & Mixed Autonomy (IDM)</h3>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">2026-09-01 00:43 IST</span>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Implemented the Intelligent Driver Model (Treiber et al., 2000) for non-communicative human drivers, added multi-lane urban roundabouts and scalable intersection topologies, and benchmarked CAV penetration rates &rho;_CAV &isin; [0.0, 1.0].
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">src/agents/idm_human_agent.py</span>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">experiments/run_mixed_autonomy_benchmarks.py</span>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">tests/test_mixed_autonomy.py</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 5 -->
+                <div class="timeline-item pl-6 relative">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-0.5 bg-blue-500/10 text-blue-400 border border-blue-500/20 text-xs font-semibold rounded-full">Phase 5 Completed</span>
+                                <h3 class="text-base font-bold text-white mt-1">Deep MARL (MAPPO + Graph Attention Networks)</h3>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">2026-08-31 03:55 IST</span>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Implemented GAT graph attention layer and Centralized Training with Decentralized Execution (CTDE) MAPPO Actor-Critic policy. Reduced multi-agent collision rate to 6.0% under extreme joint channel disruptions.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-xs">
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">src/agents/gat_layer.py</span>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">src/agents/mappo_agent.py</span>
+                            <span class="px-2 py-1 bg-slate-700 text-slate-300 rounded font-mono">experiments/train_mappo.py</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="timeline-item pl-6 relative">
+                    <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-3">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <span class="px-2.5 py-0.5 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-semibold rounded-full">Phase 4 Completed</span>
+                                <h3 class="text-base font-bold text-white mt-1">Statistical Hypothesis Testing (RQ1) & ANOVA</h3>
+                            </div>
+                            <span class="text-xs text-slate-400 font-mono">2026-08-31 03:40 IST</span>
+                        </div>
+                        <p class="text-sm text-slate-300">
+                            Executed 50-trial Monte Carlo simulations. Statistically proved the Super-Additivity Hypothesis using Welch's t-test (t = 2.585, p = 0.0128 &lt; 0.05).
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- TAB 2: ANALYTICS & CHARTS -->
+        <section id="tab-analytics" class="hidden space-y-6">
+            <h2 class="text-lg font-bold text-white">Empirical Research Findings & Interactive Visualizations</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Chart 1 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+                    <h3 class="text-sm font-bold text-slate-200">RQ1: Super-Additive Degradation (50 Trials with 95% CI)</h3>
+                    <div class="h-64">
+                        <canvas id="anovaChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400">
+                        Welch's t-test confirms statistically significant super-additive collision degradation (t = 2.585, p = 0.0128 &lt; 0.05).
+                    </p>
+                </div>
+
+                <!-- Chart 2 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+                    <h3 class="text-sm font-bold text-slate-200">Policy Benchmark under Rayleigh Fading Channel</h3>
+                    <div class="h-64">
+                        <canvas id="mitigationChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400">
+                        GAT-MAPPO achieves 6.0% collision rate (94% safety improvement), while PET-Comm achieves 14.0% collision rate.
+                    </p>
+                </div>
+
+                <!-- Chart 3 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+                    <h3 class="text-sm font-bold text-slate-200">Mixed Autonomy: Collision vs. CAV Penetration Rate</h3>
+                    <div class="h-64">
+                        <canvas id="mixedAutonomyChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400">
+                        Evaluated across Intersection, Highway Merging, and Roundabout topologies with IDM human drivers.
+                    </p>
+                </div>
+
+                <!-- Chart 4 -->
+                <div class="bg-slate-800 p-6 rounded-xl border border-slate-700 space-y-4">
+                    <h3 class="text-sm font-bold text-slate-200">Multi-Agent Scalability under Channel Bottlenecks</h3>
+                    <div class="h-64">
+                        <canvas id="scalabilityChart"></canvas>
+                    </div>
+                    <p class="text-xs text-slate-400">
+                        Stress-tested vehicle density scalability from N = 4 up to N = 20 interacting vehicles.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: PAPER DRAFT -->
+        <section id="tab-paper" class="hidden space-y-6">
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 space-y-6">
+                <div class="border-b border-slate-700 pb-4 flex justify-between items-start">
+                    <div>
+                        <span class="px-3 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/20 text-xs font-semibold rounded-full">IEEE Conference Format</span>
+                        <h2 class="text-xl font-bold text-white mt-2">Communication-Aware Cooperative Multi-Agent Frameworks Under Physical Channel Disruptions</h2>
+                        <p class="text-xs text-slate-400 mt-1">Authors: Aryan Dubey, Pranjal Gupta, Swagata Barik | Supervisors: Dr. Alaa Daoud & Prof. KG Srinivasa (IIIT Naya Raipur)</p>
+                    </div>
+                    <div class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-lg">
+                        PDF Compiled: paper/main.pdf
+                    </div>
+                </div>
+
+                <div class="prose prose-invert max-w-none space-y-4 text-sm text-slate-300">
+                    <h3 class="text-base font-bold text-blue-400">Abstract</h3>
+                    <p>
+                        Cooperative Autonomous Vehicles (CAVs) communicate over Vehicle-to-Everything (V2X) wireless links to coordinate safely in dense traffic topologies. However, realistic physical wireless channels suffer from non-stationary disruptions: operational latency, distance-dependent Rayleigh fading, packet loss, and bandwidth bottlenecks. In this paper, we establish an end-to-end framework across 4-way unsignalized intersections, high-speed highway merges, and multi-lane urban roundabouts. We statistically confirm the Super-Additivity Hypothesis (t = 2.585, p = 0.0128 &lt; 0.05), formulate Predictive Event-Triggered Communication (PET-Comm), Criticality-Aware Reliable Retransmission (CARR), and Graph Attention Multi-Agent PPO (GAT-MAPPO), and evaluate mixed autonomy traffic with Intelligent Driver Model (IDM) human drivers across penetration rates &rho;_CAV &isin; [0.0, 1.0].
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: ROADMAP -->
+        <section id="tab-roadmap" class="hidden space-y-6">
+            <div class="bg-slate-800 p-8 rounded-xl border border-slate-700 space-y-6">
+                <h2 class="text-lg font-bold text-white">Master Project Roadmap (8 Phases)</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 1 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Scope & Research Gap</h4>
+                        <p class="text-xs text-slate-400">Formulated RQ1 Super-Additive Degradation Hypothesis.</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 2 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Environment & Channel</h4>
+                        <p class="text-xs text-slate-400">Built controllable latency, loss, bandwidth, and Rayleigh fading.</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 3 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Physics & Estimation Mitigation</h4>
+                        <p class="text-xs text-slate-400">Implemented 2D Kalman Filter, PET-Comm, and CARR protocols.</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 4 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Statistical Proof & IEEE Draft</h4>
+                        <p class="text-xs text-slate-400">50 Monte Carlo trials, Welch's t-test (p = 0.0128 &lt; 0.05).</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 5 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Deep MARL (GAT-MAPPO)</h4>
+                        <p class="text-xs text-slate-400">Actor-Critic neural policy achieving 6.0% collision rate.</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 6 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Mixed Autonomy & Multi-Scenario</h4>
+                        <p class="text-xs text-slate-400">IDM human drivers, highway merging, and urban roundabouts.</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-emerald-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-emerald-500/10 text-emerald-400 text-xs font-semibold rounded">Phase 7 - Completed</span>
+                        <h4 class="font-bold text-white text-sm">Systematic Sensitivity Grid</h4>
+                        <p class="text-xs text-slate-400">Pareto frontier, parameter sweeps, and density scalability.</p>
+                    </div>
+                    <div class="p-4 bg-slate-900 rounded-lg border border-blue-700/50 space-y-1">
+                        <span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 text-xs font-semibold rounded">Phase 8 - Active</span>
+                        <h4 class="font-bold text-white text-sm">Defense Preparation</h4>
+                        <p class="text-xs text-slate-400">Final presentation slides and interactive jury walkthrough.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 border-t border-slate-700 mt-12 py-6 text-center text-xs text-slate-500">
+        Communication-Aware Cooperative Agents | 5th Semester Minor Project Dashboard
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        function switchTab(tabId) {
+            ['timeline', 'analytics', 'paper', 'roadmap'].forEach(t => {
+                document.getElementById('tab-' + t).classList.add('hidden');
+                document.getElementById('tab-btn-' + t).classList.remove('border-blue-500', 'text-blue-400', 'font-semibold');
+                document.getElementById('tab-btn-' + t).classList.add('border-transparent', 'text-slate-400');
+            });
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            document.getElementById('tab-btn-' + tabId).classList.add('border-blue-500', 'text-blue-400', 'font-semibold');
+            document.getElementById('tab-btn-' + tabId).classList.remove('border-transparent', 'text-slate-400');
+        }
+
+        function filterTimeline() {
+            const query = document.getElementById('timeline-search').value.toLowerCase();
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.style.display = text.includes(query) ? '' : 'none';
+            });
+        }
+
+        // Initialize Chart.js
+        window.onload = function() {
+            // Chart 1: ANOVA
+            const ctx1 = document.getElementById('anovaChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Control (Ideal)', 'Iso Latency', 'Iso Loss', 'Joint Combined'],
+                    datasets: [{
+                        label: 'Collision Rate (%)',
+                        data: [88.0, 88.0, 94.0, 100.0],
+                        backgroundColor: ['#3b82f6', '#f59e0b', '#8b5cf6', '#ef4444'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { color: '#94a3b8' } },
+                        x: { ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Chart 2: Mitigation & Learning
+            const ctx2 = document.getElementById('mitigationChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: ['Rule Baseline', 'CARR Protocol', 'PET-Comm (Kalman)', 'GAT-MAPPO (Ours)'],
+                    datasets: [{
+                        label: 'Collision Rate (%)',
+                        data: [100.0, 98.0, 14.0, 6.0],
+                        backgroundColor: ['#ef4444', '#f59e0b', '#3b82f6', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { color: '#94a3b8' } },
+                        x: { ticks: { color: '#94a3b8' } }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Chart 3: Mixed Autonomy
+            const ctx3 = document.getElementById('mixedAutonomyChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'line',
+                data: {
+                    labels: ['0% CAV', '25% CAV', '50% CAV', '75% CAV', '100% CAV'],
+                    datasets: [
+                        {
+                            label: 'Intersection (PET-Comm)',
+                            data: [100.0, 100.0, 100.0, 100.0, 100.0],
+                            borderColor: '#3b82f6',
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Highway Merge (PET-Comm)',
+                            data: [0.0, 100.0, 0.0, 53.3, 73.3],
+                            borderColor: '#10b981',
+                            tension: 0.2
+                        },
+                        {
+                            label: 'Roundabout (PET-Comm)',
+                            data: [100.0, 100.0, 100.0, 100.0, 100.0],
+                            borderColor: '#f59e0b',
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { color: '#94a3b8' } },
+                        x: { ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+
+            // Chart 4: Scalability
+            const ctx4 = document.getElementById('scalabilityChart').getContext('2d');
+            new Chart(ctx4, {
+                type: 'line',
+                data: {
+                    labels: ['N=4', 'N=8', 'N=12', 'N=16', 'N=20'],
+                    datasets: [
+                        {
+                            label: 'Baseline Broadcast',
+                            data: [95.0, 100.0, 100.0, 100.0, 100.0],
+                            borderColor: '#ef4444',
+                            tension: 0.2
+                        },
+                        {
+                            label: 'CARR Protocol',
+                            data: [90.0, 100.0, 100.0, 100.0, 100.0],
+                            borderColor: '#f59e0b',
+                            tension: 0.2
+                        },
+                        {
+                            label: 'PET-Comm (Ours)',
+                            data: [20.0, 100.0, 100.0, 100.0, 100.0],
+                            borderColor: '#3b82f6',
+                            tension: 0.2
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 100, ticks: { color: '#94a3b8' } },
+                        x: { ticks: { color: '#94a3b8' } }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

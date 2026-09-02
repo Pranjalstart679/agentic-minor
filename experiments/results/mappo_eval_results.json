@@ -1,0 +1,22 @@
+{
+  "Rule_Baseline": {
+    "collision_rate": 1.0,
+    "avg_speed": 8.68487896391079,
+    "avg_msgs_sent": 441.12
+  },
+  "CARR_Protocol": {
+    "collision_rate": 0.98,
+    "avg_speed": 9.708095118652293,
+    "avg_msgs_sent": 372.56
+  },
+  "PET_Comm": {
+    "collision_rate": 0.14,
+    "avg_speed": 40.499518546669165,
+    "avg_msgs_sent": 934.56
+  },
+  "MAPPO_DeepRL": {
+    "collision_rate": 0.06,
+    "avg_speed": 14.544858166004206,
+    "avg_msgs_sent": 1403.52
+  }
+}

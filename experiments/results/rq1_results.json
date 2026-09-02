@@ -1,0 +1,37 @@
+{
+  "1_Ideal": {
+    "collision_rate": 1.0,
+    "avg_steps": 50.05,
+    "avg_speed": 4.968378886214591,
+    "avg_msgs_sent": 600.6,
+    "avg_msgs_delivered": 600.6
+  },
+  "2_Latency_Only": {
+    "collision_rate": 1.0,
+    "avg_steps": 43.5,
+    "avg_speed": 6.310878886214593,
+    "avg_msgs_sent": 522.0,
+    "avg_msgs_delivered": 510.0
+  },
+  "3_Loss_Only": {
+    "collision_rate": 1.0,
+    "avg_steps": 49.65,
+    "avg_speed": 4.960878886214591,
+    "avg_msgs_sent": 595.8,
+    "avg_msgs_delivered": 417.35
+  },
+  "4_Bandwidth_Only": {
+    "collision_rate": 1.0,
+    "avg_steps": 34.0,
+    "avg_speed": 10.240878886214594,
+    "avg_msgs_sent": 408.0,
+    "avg_msgs_delivered": 68.0
+  },
+  "5_Combined_Joint": {
+    "collision_rate": 1.0,
+    "avg_steps": 33.15,
+    "avg_speed": 9.160878886214594,
+    "avg_msgs_sent": 397.8,
+    "avg_msgs_delivered": 64.3
+  }
+}

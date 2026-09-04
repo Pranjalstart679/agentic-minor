@@ -48,6 +48,17 @@ M.~Treiber, A.~Hennecke, and D.~Helbing, ``Congested traffic states in
   empirical observations and microscopic simulations,'' \emph{Physical Review
   E}, vol.~62, no.~2, pp. 1805--1824, 2000.
 
+\bibitem{xu2025dctmarl}
+Y.~Xu, Y.~Shi, J.~Tian, F.~Xia, T.~Li, S.~Chen, and Y.~Ge, ``Dct-marl: A
+  dynamic communication topology-based marl algorithm for connected vehicle
+  platoon control,'' \emph{arXiv preprint arXiv:2508.12633}, 2025.
+
+\bibitem{kaul2012real}
+S.~Kaul, R.~Yates, and M.~Gruteser, ``Real-time status: How often should one
+  update?'' in \emph{IEEE INFOCOM 2012-IEEE Conference on Computer
+  Communications}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2012, pp.
+  2731--2735.
+
 \bibitem{zhang2020tmc}
 H.~Zhang, W.~Chen, H.~Li, and J.~Ye, ``Tmc: Truncated message communication for
   multi-agent reinforcement learning,'' in \emph{Advances in Neural Information

@@ -1,0 +1,10 @@
+{
+  "agent_type": "pet_comm",
+  "latency": 2,
+  "packet_loss_rate": 0.3,
+  "steps_simulated": 150,
+  "collisions_count": 114,
+  "total_messages_sent": 471,
+  "total_messages_delivered": 306,
+  "fcd_export_file": "C:\\Users\\Pranjal\\Documents\\GitHub\\agents-minor\\experiments\\results\\sumo\\trace_pet_comm_L2_loss30.fcd.xml"
+}

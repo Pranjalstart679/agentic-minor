@@ -1,0 +1,14 @@
+<routes version="1.1.0">
+    <vType id="cav_v2x" accel="3.0" decel="6.0" sigma="0.0" length="4.5" minGap="2.5" maxSpeed="15.0"/>
+    <vType id="human_idm" accel="2.0" decel="4.5" sigma="0.5" length="4.5" minGap="2.5" maxSpeed="15.0"/>
+    
+    <route id="r_NS" edges="N2C C2S"/>
+    <route id="r_SN" edges="S2C C2N"/>
+    <route id="r_EW" edges="E2C C2W"/>
+    <route id="r_WE" edges="W2C C2E"/>
+
+    <vehicle id="v_N" type="cav_v2x" route="r_NS" depart="0.0" departSpeed="10.0"/>
+    <vehicle id="v_S" type="cav_v2x" route="r_SN" depart="0.0" departSpeed="10.0"/>
+    <vehicle id="v_E" type="cav_v2x" route="r_EW" depart="0.0" departSpeed="10.0"/>
+    <vehicle id="v_W" type="cav_v2x" route="r_WE" depart="0.0" departSpeed="10.0"/>
+</routes>

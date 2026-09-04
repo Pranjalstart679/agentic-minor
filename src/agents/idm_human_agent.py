@@ -57,7 +57,7 @@ class IDMHumanAgent(BaseCooperativeAgent):
         # Speed calculation
         v = math.hypot(self_state.vx, self_state.vy)
 
-        # Identify closest leading vehicle in field of view
+        # 1. Identify closest leading vehicle in same-lane forward corridor
         lead_distance, lead_speed_diff = self._find_leading_vehicle(self_state)
 
         if lead_distance is None:
@@ -74,9 +74,51 @@ class IDMHumanAgent(BaseCooperativeAgent):
             ratio_s = (s_star / max(lead_distance, 0.5)) ** 2
             acc = self.a_max * (1.0 - ratio_v - ratio_s)
 
+        # 2. Novelty addition: 2D Cross-Traffic Visual Sightline Yielding
+        # Models human driver visual scanning at unsignalized intersections
+        should_cross_yield = self._check_cross_traffic_yield(self_state)
+        if should_cross_yield:
+            # Human brakes comfortably or firmly to yield right-of-way
+            acc = min(acc, -self.b_comf)
+
         # Realistic physical bounds [-6.0, 3.0] m/s^2
         clipped_acc = max(min(acc, self.max_accel), self.max_decel)
         return clipped_acc, []
+
+    def _check_cross_traffic_yield(self, self_state: VehicleState) -> bool:
+        """
+        Heuristic for human visual right-of-way yielding at 2D conflict intersections.
+        Checks if cross-traffic vehicles have lower Time-to-Conflict (TTC) or arrive first.
+        """
+        my_dist_center = math.hypot(self_state.x, self_state.y)
+        my_speed = math.hypot(self_state.vx, self_state.vy)
+        my_ttc = my_dist_center / max(0.5, my_speed)
+
+        # Only evaluate visual yielding when approaching intersection (within 35m)
+        is_approaching = (self_state.x * self_state.vx + self_state.y * self_state.vy) < 0
+        if not is_approaching or my_dist_center > 35.0 or my_dist_center < 3.0:
+            return False
+
+        for vid, other in self.visible_neighbors.items():
+            if not other.active:
+                continue
+
+            other_dist = math.hypot(other.x, other.y)
+            other_speed = math.hypot(other.vx, other.vy)
+            other_approaching = (other.x * other.vx + other.y * other.vy) < 0
+
+            # Check if other vehicle is also approaching intersection
+            if other_approaching and other_dist < 40.0:
+                other_ttc = other_dist / max(0.5, other_speed)
+                # If arrival times conflict within human perception margin (2.5s)
+                if abs(my_ttc - other_ttc) < 2.5:
+                    # Vehicle farther from the intersection yields to closer vehicle
+                    if my_dist_center > other_dist:
+                        return True
+                    # Tie-breaking by vehicle ID (representing right-of-way convention)
+                    elif abs(my_dist_center - other_dist) < 1.0 and self.vehicle_id > vid:
+                        return True
+        return False
 
     def _find_leading_vehicle(self, self_state: VehicleState) -> Tuple[Optional[float], float]:
         """

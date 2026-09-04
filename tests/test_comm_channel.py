@@ -53,6 +53,20 @@ def test_channel_packet_loss():
     assert len(delivered) == 0
 
 
+def test_channel_invalid_packet_loss_rate():
+    # Negative loss probability should raise ValueError
+    with pytest.raises(ValueError, match="packet_loss_rate must be between 0.0 and 1.0"):
+        CommunicationChannel(packet_loss_rate=-0.2)
+
+    # Loss probability > 1.0 should raise ValueError
+    with pytest.raises(ValueError, match="packet_loss_rate must be between 0.0 and 1.0"):
+        CommunicationChannel(packet_loss_rate=1.5)
+
+    # Negative latency should raise ValueError
+    with pytest.raises(ValueError, match="latency must be non-negative"):
+        CommunicationChannel(latency=-1)
+
+
 def test_channel_bandwidth_limit_priority():
     channel = CommunicationChannel(latency=0, packet_loss_rate=0.0, bandwidth_limit=1)
     msg_routine = Message(

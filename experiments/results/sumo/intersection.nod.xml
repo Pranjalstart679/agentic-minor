@@ -1,0 +1,7 @@
+<nodes version="1.1.0">
+    <node id="center" x="0.0" y="0.0" type="priority"/>
+    <node id="north" x="0.0" y="100.0" type="priority"/>
+    <node id="south" x="0.0" y="-100.0" type="priority"/>
+    <node id="east" x="100.0" y="0.0" type="priority"/>
+    <node id="west" x="-100.0" y="0.0" type="priority"/>
+</nodes>

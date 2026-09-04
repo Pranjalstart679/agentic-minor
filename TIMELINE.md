@@ -48,7 +48,7 @@
      * `experiments/run_rq1_combined_tests.py`: Runs 5 scenarios (Ideal, Latency-only, Loss-only, Bandwidth-only, Combined Joint) to answer RQ1.
      * `experiments/run_mitigation_tests.py`: Evaluates Rule Baseline vs PET-Comm vs CARR under severe combined impairments.
   6. **Unit Test Suite**: Created test coverage in `tests/test_comm_channel.py`, `tests/test_kalman_filter.py`, and `tests/test_agents.py`.
-* **Rationale**: Fulfills all phases of Option 4, creating an end-to-end framework to conduct empirical evaluation of RQ1 and test slide 8 mitigation ideas.
+* **Rationale**: Fulfills all phases of Option 4, creating an end-to-end framework to conduct empirical evaluation of RQ1 and test proposed mitigation ideas.
 
 ---
 

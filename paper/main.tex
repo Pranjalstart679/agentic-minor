@@ -55,7 +55,7 @@ Existing communicative MARL literature primarily evaluates these disruptions in 
 \end{figure}
 
 \section{Related Work}
-Table \ref{tab:lit_review} compares recent communicative MARL frameworks with our contributions.
+Table \ref{tab:lit_review} compares recent communicative MARL frameworks with our contributions. While recent work such as DCT-MARL \cite{xu2025dctmarl} tackles time-varying delays and packet loss via dynamic topology gating, it is confined strictly to 1D linear vehicle platoons and omits 2D cross-trajectory conflict points, mixed human autonomy, and strict bandwidth channel limits. Furthermore, unlike prior works, our framework measures information staleness via Age of Information (AoI) \cite{kaul2012real}.
 
 \begin{table*}[t]
 \caption{Comparison of Communicative Multi-Agent Architectures in Literature}
@@ -70,7 +70,8 @@ AgentComm-Bench (2026) \cite{bansal2026agentcomm} & Synthetic Failures & Toy Gri
 TMC (NeurIPS 2020) \cite{zhang2020tmc} & Adaptive Truncation & StarCraft / Grid-World & Cuts comm overhead by 80\% & No latency modeling; non-physical \\
 IntNet (IEEE RA-L 2025) \cite{parada2025intnet} & Dynamic GAT & Highway / Intersection & Prunes communication graph & Assumes zero packet loss / perfect comm \\
 ETCNet (IEEE TNNLS 2023) \cite{hu2023etcnet} & Bandwidth Budget & Multi-Agent Traffic & Optimizes comm budgets & Only tests bandwidth; no loss/fading \\
-\textbf{Our Framework} & \textbf{PET-Comm + GAT-MAPPO} & \textbf{Intersection, Highway, Roundabout} & \textbf{Physics-aware channel + Mixed Autonomy} & \textbf{Fully integrated evaluation} \\
+DCT-MARL (2025) \cite{xu2025dctmarl} & Gated Topology & 1D Vehicle Platoons & Multi-key gating for platooning & Confined to 1D; no mixed autonomy or AoI \\
+\textbf{Our Framework} & \textbf{PET-Comm + GAT-MAPPO} & \textbf{Intersection, Highway, Roundabout} & \textbf{Physics-aware channel + Mixed Autonomy} & \textbf{Fully integrated evaluation + AoI} \\
 \bottomrule
 \end{tabular}
 \end{table*}

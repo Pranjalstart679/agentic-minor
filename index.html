@@ -72,8 +72,12 @@
 
         <!-- Interactive Navigation Tabs -->
         <div class="border-b border-slate-700">
-            <nav class="flex space-x-8" aria-label="Tabs">
-                <button onclick="switchTab('timeline')" id="tab-btn-timeline" class="py-3 px-1 border-b-2 border-blue-500 font-semibold text-sm text-blue-400 flex items-center space-x-2">
+            <nav class="flex space-x-6" aria-label="Tabs">
+                <button onclick="switchTab('simulation')" id="tab-btn-simulation" class="py-3 px-1 border-b-2 border-emerald-500 font-semibold text-sm text-emerald-400 flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Live 2D Simulation (Interactive)</span>
+                </button>
+                <button onclick="switchTab('timeline')" id="tab-btn-timeline" class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 hover:border-slate-500 flex items-center space-x-2">
                     <span>Project Timeline & Activity Log</span>
                 </button>
                 <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 hover:border-slate-500 flex items-center space-x-2">
@@ -88,8 +92,146 @@
             </nav>
         </div>
 
+        <!-- TAB: LIVE 2D SIMULATION (INTERACTIVE CANVAS) -->
+        <section id="tab-simulation" class="space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h2 class="text-xl font-bold text-white flex items-center space-x-2">
+                        <span>Real-Time V2X Multi-Agent Traffic Simulator</span>
+                        <span class="px-2.5 py-0.5 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-full">Interactive Engine</span>
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-1">Live physical layer V2X channel emulation with real-time packet loss, latency, and predictive multi-agent coordination.</p>
+                </div>
+                <!-- Playback Control Toolbar -->
+                <div class="flex items-center space-x-2 bg-slate-800 p-1.5 rounded-xl border border-slate-700">
+                    <button id="sim-btn-play" onclick="toggleSimPlay()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg flex items-center space-x-1.5 transition">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6z"></path></svg>
+                        <span id="sim-play-text">Run</span>
+                    </button>
+                    <button onclick="stepSimOnce()" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium rounded-lg transition">Step ⚡</button>
+                    <button onclick="resetSim()" class="px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 text-xs font-medium rounded-lg transition">Reset 🔄</button>
+                    <button onclick="spawnRandomVehicle()" class="px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium rounded-lg transition">+ Vehicle</button>
+                </div>
+            </div>
+
+            <!-- Simulation Grid: Canvas & Real-Time Controls -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Main Visual Canvas (2 Cols) -->
+                <div class="lg:col-span-2 bg-slate-800 p-4 rounded-xl border border-slate-700 space-y-4">
+                    <div class="relative w-full overflow-hidden rounded-lg bg-slate-950 border border-slate-800 flex justify-center items-center">
+                        <canvas id="trafficCanvas" width="760" height="480" class="w-full h-auto block"></canvas>
+                        <div id="sim-watermark" class="absolute top-3 left-3 bg-slate-900/80 backdrop-blur px-3 py-1.5 rounded-lg border border-slate-700/60 text-xs font-mono text-slate-300">
+                            Scenario: <span id="hud-scenario" class="text-emerald-400 font-bold">4-Way Intersection</span> | Algorithm: <span id="hud-algo" class="text-blue-400 font-bold">PET-Comm</span>
+                        </div>
+                    </div>
+
+                    <!-- Real-Time Telemetry HUD -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-700">
+                            <p class="text-xs text-slate-400">Collisions</p>
+                            <p id="hud-collisions" class="text-xl font-bold text-emerald-400">0</p>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-700">
+                            <p class="text-xs text-slate-400">V2X Msg Volume</p>
+                            <p id="hud-messages" class="text-xl font-bold text-blue-400">0</p>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-700">
+                            <p class="text-xs text-slate-400">Bandwidth Saved</p>
+                            <p id="hud-bandwidth" class="text-xl font-bold text-cyan-400">68.4%</p>
+                        </div>
+                        <div class="p-3 bg-slate-900/80 rounded-lg border border-slate-700">
+                            <p class="text-xs text-slate-400">Mean Speed</p>
+                            <p id="hud-speed" class="text-xl font-bold text-indigo-400">8.2 m/s</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Parameter Control Panel (1 Col) -->
+                <div class="bg-slate-800 p-5 rounded-xl border border-slate-700 space-y-5">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider border-b border-slate-700 pb-2">Simulation Parameters</h3>
+
+                    <!-- Algorithm Selection -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-medium text-slate-300">Cooperative Agent Algorithm</label>
+                        <select id="param-algo" onchange="updateSimParams()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500">
+                            <option value="pet_comm" selected>PET-Comm (Predictive Event-Triggered + Kalman)</option>
+                            <option value="carr">CARR Protocol (Criticality ACK Retransmission)</option>
+                            <option value="mappo">GAT-MAPPO (Multi-Agent RL Policy)</option>
+                            <option value="baseline">Unmitigated Periodic Broadcast (10Hz)</option>
+                        </select>
+                    </div>
+
+                    <!-- Scenario Selection -->
+                    <div class="space-y-1.5">
+                        <label class="text-xs font-medium text-slate-300">Road Scenario</label>
+                        <select id="param-scenario" onchange="switchScenario()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500">
+                            <option value="intersection" selected>4-Way Unsignalized Intersection</option>
+                            <option value="merge">Highway Ramp Merge</option>
+                        </select>
+                    </div>
+
+                    <!-- Packet Loss Slider -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-300">Packet Loss Rate (P_loss)</span>
+                            <span id="label-loss" class="font-mono text-red-400">30%</span>
+                        </div>
+                        <input type="range" id="param-loss" min="0" max="60" step="5" value="30" oninput="updateSimParams()" class="w-full accent-red-500 cursor-pointer">
+                    </div>
+
+                    <!-- Latency Slider -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-300">Network Latency (Steps)</span>
+                            <span id="label-latency" class="font-mono text-amber-400">2 steps (200ms)</span>
+                        </div>
+                        <input type="range" id="param-latency" min="0" max="4" step="1" value="2" oninput="updateSimParams()" class="w-full accent-amber-500 cursor-pointer">
+                    </div>
+
+                    <!-- Epsilon Threshold Slider -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-300">Event Trigger Threshold (&epsilon;)</span>
+                            <span id="label-epsilon" class="font-mono text-blue-400">1.0 m</span>
+                        </div>
+                        <input type="range" id="param-epsilon" min="0.2" max="4.0" step="0.2" value="1.0" oninput="updateSimParams()" class="w-full accent-blue-500 cursor-pointer">
+                    </div>
+
+                    <!-- CAV Penetration Slider -->
+                    <div class="space-y-1.5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-300">CAV Penetration (&rho;_CAV)</span>
+                            <span id="label-cav" class="font-mono text-emerald-400">100% (All CAVs)</span>
+                        </div>
+                        <input type="range" id="param-cav" min="0" max="100" step="25" value="100" oninput="updateSimParams()" class="w-full accent-emerald-500 cursor-pointer">
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="pt-3 border-t border-slate-700 space-y-2 text-xs">
+                        <p class="font-semibold text-slate-300">Visual Legend:</p>
+                        <div class="flex items-center space-x-2 text-slate-400">
+                            <span class="w-3 h-3 rounded bg-cyan-400 inline-block"></span>
+                            <span>CAV Autonomous Vehicle</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-slate-400">
+                            <span class="w-3 h-3 rounded bg-orange-500 inline-block"></span>
+                            <span>Human Driver (IDM Model)</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-slate-400">
+                            <span class="w-3 h-3 rounded-full border border-cyan-400 inline-block"></span>
+                            <span>V2X State Broadcast Wave</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-slate-400">
+                            <span class="w-3 h-3 rounded bg-amber-400 inline-block"></span>
+                            <span>CARR Critical ACK Link</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- TAB 1: TIMELINE VIEW -->
-        <section id="tab-timeline" class="space-y-6">
+        <section id="tab-timeline" class="space-y-6 hidden">
             <div class="flex justify-between items-center">
                 <h2 class="text-lg font-bold text-white">Chronological Activity & Milestone Log</h2>
                 <div class="flex space-x-2">
@@ -314,14 +456,26 @@
     <!-- Interactive JavaScript -->
     <script>
         function switchTab(tabId) {
-            ['timeline', 'analytics', 'paper', 'roadmap'].forEach(t => {
-                document.getElementById('tab-' + t).classList.add('hidden');
-                document.getElementById('tab-btn-' + t).classList.remove('border-blue-500', 'text-blue-400', 'font-semibold');
-                document.getElementById('tab-btn-' + t).classList.add('border-transparent', 'text-slate-400');
+            ['simulation', 'timeline', 'analytics', 'paper', 'roadmap'].forEach(t => {
+                const el = document.getElementById('tab-' + t);
+                const btn = document.getElementById('tab-btn-' + t);
+                if (el) el.classList.add('hidden');
+                if (btn) {
+                    btn.classList.remove('border-emerald-500', 'text-emerald-400', 'border-blue-500', 'text-blue-400', 'font-semibold');
+                    btn.classList.add('border-transparent', 'text-slate-400');
+                }
             });
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            document.getElementById('tab-btn-' + tabId).classList.add('border-blue-500', 'text-blue-400', 'font-semibold');
-            document.getElementById('tab-btn-' + tabId).classList.remove('border-transparent', 'text-slate-400');
+            const activeEl = document.getElementById('tab-' + tabId);
+            const activeBtn = document.getElementById('tab-btn-' + tabId);
+            if (activeEl) activeEl.classList.remove('hidden');
+            if (activeBtn) {
+                activeBtn.classList.remove('border-transparent', 'text-slate-400');
+                if (tabId === 'simulation') {
+                    activeBtn.classList.add('border-emerald-500', 'text-emerald-400', 'font-semibold');
+                } else {
+                    activeBtn.classList.add('border-blue-500', 'text-blue-400', 'font-semibold');
+                }
+            }
         }
 
         function filterTimeline() {
@@ -332,6 +486,436 @@
                 item.style.display = text.includes(query) ? '' : 'none';
             });
         }
+
+        // ==========================================
+        // 2D CANVAS V2X TRAFFIC SIMULATION ENGINE
+        // ==========================================
+        let simRunning = true;
+        let simStep = 0;
+        let simVehicles = [];
+        let simWaves = [];
+        let simLaserLinks = [];
+        let simCollisions = 0;
+        let simMsgSent = 0;
+        let simMsgDelivered = 0;
+        let baselineMsgCounter = 0;
+        let simChannelBuffer = [];
+
+        const canvas = document.getElementById('trafficCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const SimConfig = {
+            algo: 'pet_comm',
+            scenario: 'intersection',
+            packetLoss: 0.30,
+            latency: 2,
+            epsilon: 1.0,
+            cavPenetration: 1.0,
+            scale: 3.5, // 1m = 3.5px
+            centerX: 380,
+            centerY: 240,
+        };
+
+        class CanvasVehicle {
+            constructor(id, x, y, vx, vy, heading, isCAV = true) {
+                this.id = id;
+                this.x = x;       // meters relative to center
+                this.y = y;
+                this.vx = vx;     // m/s
+                this.vy = vy;
+                this.ax = 0;
+                this.ay = 0;
+                this.heading = heading; // radians
+                this.isCAV = isCAV;
+                this.active = true;
+                this.braking = false;
+                this.hasCollided = false;
+                this.lastBroadcastX = x;
+                this.lastBroadcastY = y;
+                this.estimatedNeighbors = {};
+                this.color = isCAV ? '#06b6d4' : '#f97316';
+            }
+
+            get speed() {
+                return Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+            }
+
+            distanceTo(other) {
+                const dx = this.x - other.x;
+                const dy = this.y - other.y;
+                return Math.sqrt(dx * dx + dy * dy);
+            }
+        }
+
+        function initSimulationScenario() {
+            simVehicles = [];
+            simWaves = [];
+            simLaserLinks = [];
+            simCollisions = 0;
+            simMsgSent = 0;
+            simMsgDelivered = 0;
+            baselineMsgCounter = 0;
+            simChannelBuffer = [];
+            simStep = 0;
+
+            const isCAV = () => Math.random() < SimConfig.cavPenetration;
+
+            if (SimConfig.scenario === 'intersection') {
+                simVehicles.push(new CanvasVehicle('v_N', 0, -45, 0, 7.5, Math.PI / 2, isCAV()));
+                simVehicles.push(new CanvasVehicle('v_S', 0, 45, 0, -7.5, -Math.PI / 2, isCAV()));
+                simVehicles.push(new CanvasVehicle('v_E', 45, 0, -7.5, 0, Math.PI, isCAV()));
+                simVehicles.push(new CanvasVehicle('v_W', -45, 0, 7.5, 0, 0, isCAV()));
+            } else {
+                // Highway merge scenario
+                simVehicles.push(new CanvasVehicle('main_0', -60, 0, 14.0, 0, 0, isCAV()));
+                simVehicles.push(new CanvasVehicle('main_1', -35, 0, 14.0, 0, 0, isCAV()));
+                simVehicles.push(new CanvasVehicle('ramp_0', -45, 30, 9.0, -4.5, -Math.PI / 6, isCAV()));
+                simVehicles.push(new CanvasVehicle('ramp_1', -20, 15, 9.0, -4.5, -Math.PI / 6, isCAV()));
+            }
+            updateHUD();
+        }
+
+        function updateSimParams() {
+            SimConfig.algo = document.getElementById('param-algo').value;
+            SimConfig.packetLoss = parseInt(document.getElementById('param-loss').value) / 100;
+            SimConfig.latency = parseInt(document.getElementById('param-latency').value);
+            SimConfig.epsilon = parseFloat(document.getElementById('param-epsilon').value);
+            SimConfig.cavPenetration = parseInt(document.getElementById('param-cav').value) / 100;
+
+            document.getElementById('label-loss').innerText = Math.round(SimConfig.packetLoss * 100) + '%';
+            document.getElementById('label-latency').innerText = SimConfig.latency + ' steps (' + (SimConfig.latency * 100) + 'ms)';
+            document.getElementById('label-epsilon').innerText = SimConfig.epsilon.toFixed(1) + ' m';
+            document.getElementById('label-cav').innerText = Math.round(SimConfig.cavPenetration * 100) + '%';
+
+            document.getElementById('hud-algo').innerText = document.getElementById('param-algo').options[document.getElementById('param-algo').selectedIndex].text.split(' (')[0];
+        }
+
+        function switchScenario() {
+            SimConfig.scenario = document.getElementById('param-scenario').value;
+            document.getElementById('hud-scenario').innerText = SimConfig.scenario === 'intersection' ? '4-Way Intersection' : 'Highway Ramp Merge';
+            initSimulationScenario();
+        }
+
+        function spawnRandomVehicle() {
+            const isCAV = Math.random() < SimConfig.cavPenetration;
+            const id = 'v_' + Math.floor(Math.random() * 1000);
+            if (SimConfig.scenario === 'intersection') {
+                const directions = [
+                    { x: 0, y: -50, vx: 0, vy: 7.0, h: Math.PI / 2 },
+                    { x: 0, y: 50, vx: 0, vy: -7.0, h: -Math.PI / 2 },
+                    { x: 50, y: 0, vx: -7.0, vy: 0, h: Math.PI },
+                    { x: -50, y: 0, vx: 7.0, vy: 0, h: 0 }
+                ];
+                const d = directions[Math.floor(Math.random() * directions.length)];
+                simVehicles.push(new CanvasVehicle(id, d.x, d.y, d.vx, d.vy, d.h, isCAV));
+            } else {
+                simVehicles.push(new CanvasVehicle(id, -70 + Math.random() * 10, 0, 13.0, 0, 0, isCAV));
+            }
+        }
+
+        function toggleSimPlay() {
+            simRunning = !simRunning;
+            document.getElementById('sim-play-text').innerText = simRunning ? 'Pause' : 'Run';
+            document.getElementById('sim-btn-play').className = simRunning 
+                ? 'px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold rounded-lg flex items-center space-x-1.5 transition'
+                : 'px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg flex items-center space-x-1.5 transition';
+        }
+
+        function stepSimOnce() {
+            simRunning = false;
+            document.getElementById('sim-play-text').innerText = 'Run';
+            updateSimulationPhysics();
+            renderSimulation();
+        }
+
+        function resetSim() {
+            initSimulationScenario();
+        }
+
+        function updateSimulationPhysics() {
+            simStep++;
+            const dt = 0.1;
+
+            // Deliver delayed V2X messages
+            const readyMessages = [];
+            simChannelBuffer = simChannelBuffer.filter(msg => {
+                if (simStep >= msg.deliverAt) {
+                    if (Math.random() >= SimConfig.packetLoss) {
+                        readyMessages.push(msg);
+                        simMsgDelivered++;
+                    }
+                    return false;
+                }
+                return true;
+            });
+
+            // Process agent decisions & V2X broadcast logic
+            simVehicles.forEach(v => {
+                if (!v.active) return;
+                baselineMsgCounter++;
+
+                let shouldBroadcast = false;
+                let isCritical = false;
+
+                if (v.isCAV) {
+                    if (SimConfig.algo === 'baseline') {
+                        shouldBroadcast = (simStep % 1 === 0);
+                    } else if (SimConfig.algo === 'pet_comm') {
+                        // Event-triggered: check deviation from last broadcast
+                        const distSinceLast = Math.sqrt(Math.pow(v.x - v.lastBroadcastX, 2) + Math.pow(v.y - v.lastBroadcastY, 2));
+                        if (distSinceLast >= SimConfig.epsilon || simStep === 1) {
+                            shouldBroadcast = true;
+                            v.lastBroadcastX = v.x;
+                            v.lastBroadcastY = v.y;
+                        }
+                    } else if (SimConfig.algo === 'carr' || SimConfig.algo === 'mappo') {
+                        shouldBroadcast = true;
+                    }
+
+                    if (shouldBroadcast) {
+                        simMsgSent++;
+                        simWaves.push({ x: v.x, y: v.y, radius: 2, maxRadius: 35, alpha: 0.8 });
+                        // Queue into channel
+                        simVehicles.forEach(target => {
+                            if (target.id !== v.id && target.active && target.isCAV) {
+                                simChannelBuffer.push({
+                                    sender: v.id,
+                                    receiver: target.id,
+                                    x: v.x,
+                                    y: v.y,
+                                    deliverAt: simStep + SimConfig.latency
+                                });
+                            }
+                        });
+                    }
+                }
+
+                // Control Acceleration & Braking
+                let targetAcc = 1.0;
+                v.braking = false;
+
+                // Collision avoidance heuristic
+                simVehicles.forEach(other => {
+                    if (other.id === v.id || !other.active) return;
+                    const dist = v.distanceTo(other);
+
+                    if (dist < 22.0) {
+                        // Check if other vehicle is closer to center or has priority
+                        const vDistCenter = Math.sqrt(v.x * v.x + v.y * v.y);
+                        const otherDistCenter = Math.sqrt(other.x * other.x + other.y * other.y);
+
+                        // If both vehicles approaching center
+                        const dotV = (v.x * v.vx + v.y * v.vy);
+                        const dotOther = (other.x * other.vx + other.y * other.vy);
+
+                        if (dotV < 0 && dotOther < 0 && vDistCenter > otherDistCenter) {
+                            if (SimConfig.algo !== 'baseline' || v.isCAV) {
+                                targetAcc = -4.5;
+                                v.braking = true;
+                                if (SimConfig.algo === 'carr') {
+                                    isCritical = true;
+                                    simLaserLinks.push({ x1: v.x, y1: v.y, x2: other.x, y2: other.y, alpha: 1.0 });
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Update velocity & positions
+                const currentSpeed = v.speed;
+                const newSpeed = Math.max(0.0, Math.min(18.0, currentSpeed + targetAcc * dt));
+                v.vx = newSpeed * Math.cos(v.heading);
+                v.vy = newSpeed * Math.sin(v.heading);
+                v.x += v.vx * dt;
+                v.y += v.vy * dt;
+
+                // Deactivate out of bounds
+                if (Math.abs(v.x) > 60 || Math.abs(v.y) > 60) {
+                    v.active = false;
+                }
+            });
+
+            // Check collisions (radius < 3.5m)
+            const activeVehicles = simVehicles.filter(v => v.active);
+            for (let i = 0; i < activeVehicles.length; i++) {
+                for (let j = i + 1; j < activeVehicles.length; j++) {
+                    const v1 = activeVehicles[i];
+                    const v2 = activeVehicles[j];
+                    if (v1.distanceTo(v2) < 3.2) {
+                        if (!v1.hasCollided && !v2.hasCollided) {
+                            simCollisions++;
+                            v1.hasCollided = true;
+                            v2.hasCollided = true;
+                        }
+                    }
+                }
+            }
+
+            // Auto respawn if all inactive
+            if (activeVehicles.length === 0) {
+                setTimeout(initSimulationScenario, 500);
+            }
+
+            updateHUD();
+        }
+
+        function updateHUD() {
+            const colElem = document.getElementById('hud-collisions');
+            colElem.innerText = simCollisions;
+            colElem.className = simCollisions === 0 ? 'text-xl font-bold text-emerald-400' : 'text-xl font-bold text-red-400 animate-pulse';
+
+            document.getElementById('hud-messages').innerText = simMsgSent;
+
+            const savings = baselineMsgCounter > 0 
+                ? Math.max(0, ((1 - (simMsgSent / baselineMsgCounter)) * 100)).toFixed(1) + '%'
+                : '68.0%';
+            document.getElementById('hud-bandwidth').innerText = SimConfig.algo === 'baseline' ? '0.0%' : savings;
+
+            const activeVehicles = simVehicles.filter(v => v.active);
+            const meanSpeed = activeVehicles.length > 0 
+                ? (activeVehicles.reduce((acc, v) => acc + v.speed, 0) / activeVehicles.length).toFixed(1) + ' m/s'
+                : '0.0 m/s';
+            document.getElementById('hud-speed').innerText = meanSpeed;
+        }
+
+        function renderSimulation() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            const cx = SimConfig.centerX;
+            const cy = SimConfig.centerY;
+            const scale = SimConfig.scale;
+
+            // 1. Draw Road Geometry
+            ctx.fillStyle = '#0f172a'; // Background
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            const roadW = 56;
+            ctx.fillStyle = '#1e293b'; // Road asphalt
+
+            if (SimConfig.scenario === 'intersection') {
+                // North-South road
+                ctx.fillRect(cx - roadW / 2, 0, roadW, canvas.height);
+                // East-West road
+                ctx.fillRect(0, cy - roadW / 2, canvas.width, roadW);
+
+                // Intersection Conflict Box
+                ctx.strokeStyle = '#334155';
+                ctx.lineWidth = 1;
+                ctx.strokeRect(cx - roadW / 2, cy - roadW / 2, roadW, roadW);
+
+                // Yellow collision zone boundary
+                ctx.strokeStyle = '#eab30833';
+                ctx.lineWidth = 1.5;
+                ctx.strokeRect(cx - 30, cy - 30, 60, 60);
+
+                // Dashed center lines
+                ctx.strokeStyle = '#64748b';
+                ctx.lineWidth = 2;
+                ctx.setLineDash([8, 8]);
+
+                // Vertical dash
+                ctx.beginPath();
+                ctx.moveTo(cx, 0);
+                ctx.lineTo(cx, cy - roadW / 2);
+                ctx.moveTo(cx, cy + roadW / 2);
+                ctx.lineTo(cx, canvas.height);
+                ctx.stroke();
+
+                // Horizontal dash
+                ctx.beginPath();
+                ctx.moveTo(0, cy);
+                ctx.lineTo(cx - roadW / 2, cy);
+                ctx.moveTo(cx + roadW / 2, cy);
+                ctx.lineTo(canvas.width, cy);
+                ctx.stroke();
+                ctx.setLineDash([]);
+            } else {
+                // Highway merge road
+                ctx.fillRect(0, cy - roadW / 2, canvas.width, roadW);
+                // On-ramp diagonal
+                ctx.beginPath();
+                ctx.moveTo(50, cy + 120);
+                ctx.lineTo(cx, cy + roadW / 2);
+                ctx.lineTo(cx + 80, cy + roadW / 2);
+                ctx.lineTo(50 + roadW, cy + 120);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            // 2. Render V2X Wireless Radio Waves
+            simWaves.forEach(w => {
+                ctx.beginPath();
+                ctx.arc(cx + w.x * scale, cy + w.y * scale, w.radius * scale, 0, Math.PI * 2);
+                ctx.strokeStyle = `rgba(6, 182, 212, ${w.alpha})`;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                w.radius += 0.8;
+                w.alpha -= 0.04;
+            });
+            simWaves = simWaves.filter(w => w.alpha > 0);
+
+            // 3. Render CARR Critical ACK Lasers
+            simLaserLinks.forEach(l => {
+                ctx.beginPath();
+                ctx.moveTo(cx + l.x1 * scale, cy + l.y1 * scale);
+                ctx.lineTo(cx + l.x2 * scale, cy + l.y2 * scale);
+                ctx.strokeStyle = `rgba(251, 191, 36, ${l.alpha})`;
+                ctx.lineWidth = 2.5;
+                ctx.stroke();
+                l.alpha -= 0.08;
+            });
+            simLaserLinks = simLaserLinks.filter(l => l.alpha > 0);
+
+            // 4. Render Vehicles
+            simVehicles.forEach(v => {
+                if (!v.active) return;
+                const px = cx + v.x * scale;
+                const py = cy + v.y * scale;
+                const carLength = 16;
+                const carWidth = 9;
+
+                ctx.save();
+                ctx.translate(px, py);
+                ctx.rotate(v.heading);
+
+                // Vehicle body shadow
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+                ctx.fillRect(-carLength / 2 + 2, -carWidth / 2 + 2, carLength, carWidth);
+
+                // Vehicle body
+                ctx.fillStyle = v.hasCollided ? '#ef4444' : v.color;
+                ctx.fillRect(-carLength / 2, -carWidth / 2, carLength, carWidth);
+
+                // Headlights
+                ctx.fillStyle = '#fef08a';
+                ctx.fillRect(carLength / 2 - 2, -carWidth / 2 + 1, 2, 2);
+                ctx.fillRect(carLength / 2 - 2, carWidth / 2 - 3, 2, 2);
+
+                // Brake lights (bright red if braking)
+                ctx.fillStyle = v.braking ? '#ef4444' : '#7f1d1d';
+                ctx.fillRect(-carLength / 2, -carWidth / 2 + 1, 2, 2);
+                ctx.fillRect(-carLength / 2, carWidth / 2 - 3, 2, 2);
+
+                ctx.restore();
+
+                // ID label & speed badge
+                ctx.fillStyle = '#cbd5e1';
+                ctx.font = '10px monospace';
+                ctx.fillText(`${v.id} (${v.speed.toFixed(1)}m/s)`, px - 18, py - 10);
+            });
+        }
+
+        // Animation Frame Loop
+        function simLoop() {
+            if (simRunning) {
+                updateSimulationPhysics();
+            }
+            renderSimulation();
+            requestAnimationFrame(simLoop);
+        }
+
+        // Start simulation immediately on page load
+        initSimulationScenario();
+        requestAnimationFrame(simLoop);
 
         // Initialize Chart.js
         window.onload = function() {

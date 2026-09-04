@@ -47,7 +47,7 @@ graph TD
 
 ### Option 2: Predictive Event-Triggered Communication (PET-Comm)
 
-**Goal**: Implement an adaptive state-prediction mechanism (Idea 1 from slide 8) that minimizes bandwidth requirements while maintaining safety under lossy communication.
+**Goal**: Implement an adaptive state-prediction mechanism (Idea 1 from initial proposal) that minimizes bandwidth requirements while maintaining safety under lossy communication.
 
 * **Key Deliverables**:
   1. **Local Motion Predictor**: Each agent maintains a state estimation model (Kalman Filter or Constant Acceleration Dead-Reckoning) predicting neighboring agents' trajectories ($\hat{x}_{t}$).
@@ -61,7 +61,7 @@ graph TD
 
 ### Option 3: Criticality-Aware Reliable Retransmission (CARR) Protocol
 
-**Goal**: Implement a prioritized message transport layer with automatic retransmission for high-severity events (Idea 2 from slide 8).
+**Goal**: Implement a prioritized message transport layer with automatic retransmission for high-severity events (Idea 2 from initial proposal).
 
 * **Key Deliverables**:
   1. **Message Severity Classifier**: Classifies outgoing communications into routine state updates vs. high-severity alerts (e.g., sudden braking, emergency lane change).

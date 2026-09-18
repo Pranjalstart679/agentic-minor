@@ -4,10 +4,10 @@ __pycache__/
 *.class
 
 # Virtual environments
-.venv/
-venv/
-ENV/
-env/
+/.venv/
+/venv/
+/env/
+/env/
 
 # Testing & coverage
 .pytest_cache/

@@ -1,37 +1,37 @@
 {
   "summary": {
     "Control_Ideal": {
-      "mean_collision_rate": 0.88,
-      "std_error": 0.04642307659791976,
-      "ci_95": 0.09098923013192273,
+      "mean_collision_rate": 0.04,
+      "std_error": 0.027994168488950612,
+      "ci_95": 0.0548685702383432,
       "sample_size": 50
     },
     "Iso_Latency": {
-      "mean_collision_rate": 0.88,
-      "std_error": 0.04642307659791976,
-      "ci_95": 0.09098923013192273,
+      "mean_collision_rate": 0.3,
+      "std_error": 0.06546536707079771,
+      "ci_95": 0.1283121194587635,
       "sample_size": 50
     },
     "Iso_Loss": {
-      "mean_collision_rate": 0.94,
-      "std_error": 0.033926691677251195,
-      "ci_95": 0.06649631568741234,
+      "mean_collision_rate": 0.04,
+      "std_error": 0.027994168488950612,
+      "ci_95": 0.0548685702383432,
       "sample_size": 50
     },
     "Joint_Combined": {
-      "mean_collision_rate": 1.0,
-      "std_error": 0.0,
-      "ci_95": 0.0,
+      "mean_collision_rate": 0.72,
+      "std_error": 0.06414269805898185,
+      "ci_95": 0.12571968819560442,
       "sample_size": 50
     }
   },
   "anova": {
-    "f_statistic": 2.417040358744394,
-    "p_value": 0.06761848539262764
+    "f_statistic": 41.348348348348345,
+    "p_value": 9.500365711903275e-21
   },
   "hypothesis_test": {
-    "t_statistic": 2.5849213105659876,
-    "p_value": 0.01276833160538905,
+    "t_statistic": 4.58257569495584,
+    "p_value": 1.3551293271999404e-05,
     "super_additive_confirmed": true
   }
 }

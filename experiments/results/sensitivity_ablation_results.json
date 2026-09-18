@@ -4,114 +4,114 @@
       {
         "param_value": 0.1,
         "collision_rate": 100.0,
-        "mean_speed": 12.154806822114871,
-        "avg_messages": 1200.0
+        "mean_speed": 11.896236822114872,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.5,
         "collision_rate": 100.0,
-        "mean_speed": 12.137338843818595,
-        "avg_messages": 1200.0
+        "mean_speed": 11.868697937181242,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 1.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.167295609082817,
-        "avg_messages": 1200.0
+        "mean_speed": 11.88160547848298,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 2.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.166575638555301,
-        "avg_messages": 1200.0
+        "mean_speed": 11.872088043557326,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 3.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.151435216546744,
-        "avg_messages": 1200.0
+        "mean_speed": 11.87998284110649,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 5.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.164980694887412,
-        "avg_messages": 1200.0
+        "mean_speed": 11.878910270913149,
+        "avg_messages": 1800.0
       }
     ],
     "carr": [
       {
         "param_value": 0.1,
         "collision_rate": 100.0,
-        "mean_speed": 12.150127566972817,
-        "avg_messages": 1200.0
+        "mean_speed": 11.873857566972818,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.5,
         "collision_rate": 100.0,
-        "mean_speed": 12.145133896864282,
-        "avg_messages": 1200.0
+        "mean_speed": 11.853011458641582,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 1.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.161879309155227,
-        "avg_messages": 1200.0
+        "mean_speed": 11.875885064863732,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 2.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.15066187189408,
-        "avg_messages": 1200.0
+        "mean_speed": 11.903372932122345,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 3.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.140884827760294,
-        "avg_messages": 1200.0
+        "mean_speed": 11.873960146514182,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 5.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.153444295364414,
-        "avg_messages": 1200.0
+        "mean_speed": 11.889962749820087,
+        "avg_messages": 1800.0
       }
     ],
     "pet_comm": [
       {
         "param_value": 0.1,
         "collision_rate": 100.0,
-        "mean_speed": 12.162674956574792,
-        "avg_messages": 1200.0
+        "mean_speed": 11.885717308754032,
+        "avg_messages": 138.42
       },
       {
         "param_value": 0.5,
         "collision_rate": 100.0,
-        "mean_speed": 12.155206617516148,
-        "avg_messages": 1200.0
+        "mean_speed": 11.89099291520104,
+        "avg_messages": 70.56
       },
       {
         "param_value": 1.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.149236178489778,
-        "avg_messages": 1169.76
+        "mean_speed": 11.885368421943067,
+        "avg_messages": 54.0
       },
       {
         "param_value": 2.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.153479013124324,
-        "avg_messages": 598.44
+        "mean_speed": 11.880450628323038,
+        "avg_messages": 48.96
       },
       {
         "param_value": 3.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.161366529245322,
-        "avg_messages": 408.0
+        "mean_speed": 11.881058445563461,
+        "avg_messages": 37.98
       },
       {
         "param_value": 5.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.155304544255248,
-        "avg_messages": 252.0
+        "mean_speed": 11.87326773668613,
+        "avg_messages": 36.0
       }
     ]
   },
@@ -120,96 +120,96 @@
       {
         "param_value": 0,
         "collision_rate": 100.0,
-        "mean_speed": 12.182278256698655,
-        "avg_messages": 1200.0
+        "mean_speed": 11.90012004553446,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 1,
         "collision_rate": 100.0,
-        "mean_speed": 12.163995430955293,
-        "avg_messages": 1200.0
+        "mean_speed": 11.899910259962905,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 2,
         "collision_rate": 100.0,
-        "mean_speed": 12.14912451473548,
-        "avg_messages": 1200.0
+        "mean_speed": 11.895483234499737,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 3,
         "collision_rate": 100.0,
-        "mean_speed": 12.167518038151956,
-        "avg_messages": 1200.0
+        "mean_speed": 11.893656737773895,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 5,
         "collision_rate": 100.0,
-        "mean_speed": 12.165185713312692,
-        "avg_messages": 1200.0
+        "mean_speed": 11.892247773913226,
+        "avg_messages": 1800.0
       }
     ],
     "carr": [
       {
         "param_value": 0,
         "collision_rate": 100.0,
-        "mean_speed": 12.140579601322148,
-        "avg_messages": 1200.0
+        "mean_speed": 11.905484345222863,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 1,
         "collision_rate": 100.0,
-        "mean_speed": 12.156592800668946,
-        "avg_messages": 1200.0
+        "mean_speed": 11.884877464964115,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 2,
-        "collision_rate": 100.0,
-        "mean_speed": 12.154488119821423,
-        "avg_messages": 1200.0
+        "collision_rate": 95.0,
+        "mean_speed": 11.886001856428042,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 3,
-        "collision_rate": 100.0,
-        "mean_speed": 12.15225930480057,
-        "avg_messages": 1200.0
+        "collision_rate": 95.0,
+        "mean_speed": 11.871145897227972,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 5,
         "collision_rate": 100.0,
-        "mean_speed": 12.16226184877616,
-        "avg_messages": 1200.0
+        "mean_speed": 11.877696649255503,
+        "avg_messages": 1800.0
       }
     ],
     "pet_comm": [
       {
         "param_value": 0,
         "collision_rate": 100.0,
-        "mean_speed": 12.16153655575452,
-        "avg_messages": 1169.85
+        "mean_speed": 11.890017904820912,
+        "avg_messages": 54.0
       },
       {
         "param_value": 1,
         "collision_rate": 100.0,
-        "mean_speed": 12.151469614773703,
-        "avg_messages": 1167.9
+        "mean_speed": 11.881887713057026,
+        "avg_messages": 54.0
       },
       {
         "param_value": 2,
         "collision_rate": 100.0,
-        "mean_speed": 12.158349235944788,
-        "avg_messages": 1170.45
+        "mean_speed": 11.876841448685479,
+        "avg_messages": 54.0
       },
       {
         "param_value": 3,
         "collision_rate": 100.0,
-        "mean_speed": 12.141922161374918,
-        "avg_messages": 1169.1
+        "mean_speed": 11.881505893815895,
+        "avg_messages": 54.0
       },
       {
         "param_value": 5,
         "collision_rate": 100.0,
-        "mean_speed": 12.157057571226204,
-        "avg_messages": 1168.05
+        "mean_speed": 11.879099662366082,
+        "avg_messages": 54.0
       }
     ]
   },
@@ -218,114 +218,114 @@
       {
         "param_value": 0.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.146328500816905,
-        "avg_messages": 1200.0
+        "mean_speed": 11.892264298954434,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.1,
         "collision_rate": 100.0,
-        "mean_speed": 12.126635304048332,
-        "avg_messages": 1200.0
+        "mean_speed": 11.879776954724457,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.2,
         "collision_rate": 100.0,
-        "mean_speed": 12.168231619656298,
-        "avg_messages": 1200.0
+        "mean_speed": 11.876178452038388,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.3,
         "collision_rate": 100.0,
-        "mean_speed": 12.163085341082374,
-        "avg_messages": 1200.0
+        "mean_speed": 11.892471120344778,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.4,
         "collision_rate": 100.0,
-        "mean_speed": 12.162054708155608,
-        "avg_messages": 1200.0
+        "mean_speed": 11.870947183768319,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.6,
         "collision_rate": 100.0,
-        "mean_speed": 12.14934119135341,
-        "avg_messages": 1200.0
+        "mean_speed": 11.864661476833717,
+        "avg_messages": 1800.0
       }
     ],
     "carr": [
       {
         "param_value": 0.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.16332887610333,
-        "avg_messages": 1200.0
+        "mean_speed": 11.905119703630326,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.1,
         "collision_rate": 100.0,
-        "mean_speed": 12.165279132186338,
-        "avg_messages": 1200.0
+        "mean_speed": 11.880423333636006,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.2,
         "collision_rate": 100.0,
-        "mean_speed": 12.151402390819692,
-        "avg_messages": 1200.0
+        "mean_speed": 11.864180864368079,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.3,
         "collision_rate": 100.0,
-        "mean_speed": 12.171630684967198,
-        "avg_messages": 1200.0
+        "mean_speed": 11.884133796363665,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.4,
         "collision_rate": 100.0,
-        "mean_speed": 12.15322471448764,
-        "avg_messages": 1200.0
+        "mean_speed": 11.874861102249193,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 0.6,
         "collision_rate": 100.0,
-        "mean_speed": 12.148050992700204,
-        "avg_messages": 1200.0
+        "mean_speed": 11.867496840228549,
+        "avg_messages": 1800.0
       }
     ],
     "pet_comm": [
       {
         "param_value": 0.0,
         "collision_rate": 100.0,
-        "mean_speed": 12.148206491715884,
-        "avg_messages": 1169.25
+        "mean_speed": 11.88801114738495,
+        "avg_messages": 54.0
       },
       {
         "param_value": 0.1,
         "collision_rate": 100.0,
-        "mean_speed": 12.147631271612394,
-        "avg_messages": 1170.9
+        "mean_speed": 11.857809134434858,
+        "avg_messages": 54.0
       },
       {
         "param_value": 0.2,
         "collision_rate": 100.0,
-        "mean_speed": 12.150990704046816,
-        "avg_messages": 1169.85
+        "mean_speed": 11.89632150169371,
+        "avg_messages": 54.0
       },
       {
         "param_value": 0.3,
         "collision_rate": 100.0,
-        "mean_speed": 12.160221908194647,
-        "avg_messages": 1168.95
+        "mean_speed": 11.876295307943385,
+        "avg_messages": 54.0
       },
       {
         "param_value": 0.4,
         "collision_rate": 100.0,
-        "mean_speed": 12.153891375533123,
-        "avg_messages": 1170.3
+        "mean_speed": 11.898433301671423,
+        "avg_messages": 54.0
       },
       {
         "param_value": 0.6,
         "collision_rate": 100.0,
-        "mean_speed": 12.164929237625785,
-        "avg_messages": 1169.1
+        "mean_speed": 11.886058960586356,
+        "avg_messages": 54.0
       }
     ]
   },
@@ -334,96 +334,96 @@
       {
         "param_value": 1,
         "collision_rate": 100.0,
-        "mean_speed": 12.164082109951746,
-        "avg_messages": 1200.0
+        "mean_speed": 11.875456868525239,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 2,
         "collision_rate": 100.0,
-        "mean_speed": 12.161449416993342,
-        "avg_messages": 1200.0
+        "mean_speed": 11.874094199550768,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 4,
         "collision_rate": 100.0,
-        "mean_speed": 12.152180146699944,
-        "avg_messages": 1200.0
+        "mean_speed": 11.877245294286187,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 8,
         "collision_rate": 100.0,
-        "mean_speed": 12.172279846102935,
-        "avg_messages": 1200.0
+        "mean_speed": 11.872154747989677,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 16,
         "collision_rate": 100.0,
-        "mean_speed": 12.154226504702997,
-        "avg_messages": 1200.0
+        "mean_speed": 11.865816048504216,
+        "avg_messages": 1800.0
       }
     ],
     "carr": [
       {
         "param_value": 1,
         "collision_rate": 100.0,
-        "mean_speed": 12.156301303260722,
-        "avg_messages": 1200.0
+        "mean_speed": 11.883365670782725,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 2,
         "collision_rate": 100.0,
-        "mean_speed": 12.159600270385493,
-        "avg_messages": 1200.0
+        "mean_speed": 11.880583710524784,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 4,
         "collision_rate": 100.0,
-        "mean_speed": 12.150719667737835,
-        "avg_messages": 1200.0
+        "mean_speed": 11.865284779585377,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 8,
         "collision_rate": 100.0,
-        "mean_speed": 12.156549327696322,
-        "avg_messages": 1200.0
+        "mean_speed": 11.868906520153716,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 16,
         "collision_rate": 100.0,
-        "mean_speed": 12.152779312183851,
-        "avg_messages": 1200.0
+        "mean_speed": 11.887491217430469,
+        "avg_messages": 1800.0
       }
     ],
     "pet_comm": [
       {
         "param_value": 1,
         "collision_rate": 100.0,
-        "mean_speed": 12.162349300473128,
-        "avg_messages": 1168.8
+        "mean_speed": 11.871458257141217,
+        "avg_messages": 54.0
       },
       {
         "param_value": 2,
         "collision_rate": 100.0,
-        "mean_speed": 12.153929524140501,
-        "avg_messages": 1170.45
+        "mean_speed": 11.88135604557176,
+        "avg_messages": 54.0
       },
       {
         "param_value": 4,
         "collision_rate": 100.0,
-        "mean_speed": 12.139214898581189,
-        "avg_messages": 1173.75
+        "mean_speed": 11.877352509270477,
+        "avg_messages": 54.0
       },
       {
         "param_value": 8,
         "collision_rate": 100.0,
-        "mean_speed": 12.174882987373497,
-        "avg_messages": 1168.8
+        "mean_speed": 11.882899147341682,
+        "avg_messages": 54.0
       },
       {
         "param_value": 16,
         "collision_rate": 100.0,
-        "mean_speed": 12.156333693509813,
-        "avg_messages": 1170.15
+        "mean_speed": 11.888385342399294,
+        "avg_messages": 54.0
       }
     ]
   },
@@ -432,96 +432,96 @@
       {
         "param_value": 4,
         "collision_rate": 100.0,
-        "mean_speed": 12.15980800312014,
-        "avg_messages": 1200.0
+        "mean_speed": 11.874289921955086,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 8,
         "collision_rate": 100.0,
-        "mean_speed": 12.147576574845763,
-        "avg_messages": 5600.0
+        "mean_speed": 11.885750931252636,
+        "avg_messages": 8400.0
       },
       {
         "param_value": 12,
         "collision_rate": 100.0,
-        "mean_speed": 12.158149101537422,
-        "avg_messages": 13200.0
+        "mean_speed": 11.868151667678074,
+        "avg_messages": 19800.0
       },
       {
         "param_value": 16,
         "collision_rate": 100.0,
-        "mean_speed": 12.15303291521538,
-        "avg_messages": 24000.0
+        "mean_speed": 11.881326148451796,
+        "avg_messages": 36000.0
       },
       {
         "param_value": 20,
         "collision_rate": 100.0,
-        "mean_speed": 12.155767047380953,
-        "avg_messages": 38000.0
+        "mean_speed": 11.887181500529072,
+        "avg_messages": 57000.0
       }
     ],
     "carr": [
       {
         "param_value": 4,
         "collision_rate": 100.0,
-        "mean_speed": 12.148492120369642,
-        "avg_messages": 1200.0
+        "mean_speed": 11.889521278527031,
+        "avg_messages": 1800.0
       },
       {
         "param_value": 8,
         "collision_rate": 100.0,
-        "mean_speed": 12.14747363871814,
-        "avg_messages": 5600.0
+        "mean_speed": 11.894444558007905,
+        "avg_messages": 8400.0
       },
       {
         "param_value": 12,
         "collision_rate": 100.0,
-        "mean_speed": 12.159238981675474,
-        "avg_messages": 13200.0
+        "mean_speed": 11.883824637717119,
+        "avg_messages": 19800.0
       },
       {
         "param_value": 16,
         "collision_rate": 100.0,
-        "mean_speed": 12.152728493141884,
-        "avg_messages": 24000.0
+        "mean_speed": 11.871780164638047,
+        "avg_messages": 36000.0
       },
       {
         "param_value": 20,
         "collision_rate": 100.0,
-        "mean_speed": 12.15332194325843,
-        "avg_messages": 38000.0
+        "mean_speed": 11.881523721013687,
+        "avg_messages": 57000.0
       }
     ],
     "pet_comm": [
       {
         "param_value": 4,
         "collision_rate": 100.0,
-        "mean_speed": 12.161642983499316,
-        "avg_messages": 1168.05
+        "mean_speed": 11.88568906266205,
+        "avg_messages": 54.0
       },
       {
         "param_value": 8,
         "collision_rate": 100.0,
-        "mean_speed": 12.158767060418453,
-        "avg_messages": 5457.9
+        "mean_speed": 11.876069038157231,
+        "avg_messages": 252.0
       },
       {
         "param_value": 12,
         "collision_rate": 100.0,
-        "mean_speed": 12.162427272500484,
-        "avg_messages": 12856.25
+        "mean_speed": 11.872300460982567,
+        "avg_messages": 594.0
       },
       {
         "param_value": 16,
         "collision_rate": 100.0,
-        "mean_speed": 12.157667916729148,
-        "avg_messages": 23386.5
+        "mean_speed": 11.883861865962519,
+        "avg_messages": 1080.0
       },
       {
         "param_value": 20,
         "collision_rate": 100.0,
-        "mean_speed": 12.157886764467374,
-        "avg_messages": 37058.55
+        "mean_speed": 11.884012126804704,
+        "avg_messages": 1710.0
       }
     ]
   }

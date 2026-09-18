@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-Based on the project presentation [Sem-5th minor.pdf](file:///C:/Users/Pranjal/Documents/GitHub/agents-minor/Sem-5th%20minor.pdf), this project investigates **Communication-Aware Cooperative Autonomous Agents** in Vehicle-to-Everything (V2X) and transportation coordination scenarios.
+Based on the project presentation [Sem-5th minor.pdf](Sem-5th%20minor.pdf), this project investigates **Communication-Aware Cooperative Autonomous Agents** in Vehicle-to-Everything (V2X) and transportation coordination scenarios.
 
 ### Core Problem & Research Gap
 Existing Multi-Agent Reinforcement Learning (MARL) and communicative agent frameworks (such as AgentComm-Bench, TMC, IntNet, and ETCNet) predominantly test communication failures in isolation (e.g. only packet loss OR only latency) or use toy grid/game environments. 
@@ -118,10 +118,10 @@ agents-minor/
 │   │   └── carr_agent.py          # Criticality-Aware Retransmission agent
 │   ├── estimation/
 │   │   └── kalman_filter.py       # Trajectory estimation model
-│   └── utils/
-│       └── metrics.py             # Collision, bandwidth, throughput logging
+│   └── orchestrator/
+│       └── hybrid_pipeline.py     # Evaluation pipeline and benchmark orchestrator
 ├── experiments/
 │   ├── run_rq1_combined_tests.py  # Isolated vs Combined impairment experiments
-│   └── run_mitigation_tests.py   # PET-Comm / CARR evaluation
+│   └── run_mitigation_tests.py    # PET-Comm / CARR evaluation
 └── README.md
 ```

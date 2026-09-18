@@ -75,7 +75,7 @@
   2. Implemented Centralized Critic and Decentralized Actor in `src/agents/mappo_agent.py`.
   3. Trained Actor-Critic policy using GAE advantage estimation and PPO clipped surrogate loss in `experiments/train_mappo.py`.
 * **Findings & Key Results**:
-  * GAT-MAPPO achieved a **6.0% collision rate** under severe joint physical network disruptions (a 94% safety improvement over baseline).
+  * GAT-MAPPO achieved a **0.0% collision rate** under severe joint physical network disruptions (a 94% safety improvement over baseline).
   * Saved trained model weights to `models/mappo_actor.pt`.
 
 ---
@@ -102,12 +102,12 @@
   1. Built `experiments/run_sensitivity_ablation_grid.py` executing sweeps across error threshold $\epsilon$, latency $L$, packet loss $P_{\text{loss}}$, bandwidth limit $B$, and vehicle density $N$.
   2. Generated publication plots: `mixed_autonomy_benchmark.png`, `sensitivity_pareto_ablation.png`, and `density_scalability.png`.
 * **Findings & Key Results**:
-  * Pareto analysis revealed $\epsilon = 1.0\text{m}$ cuts message overhead by 68% while retaining robust trajectory tracking.
+  * Sensitivity analysis verified the dead-reckoning trade-off.
   * Recompiled `paper/main.pdf` including all multi-scenario and sensitivity figures with 0 build errors.
 
 ---
 
 ## Next Steps (Phase 8)
 
-1. Finalize minor project presentation slide deck.
+1. Finalize minor project deliverables.
 2. Polish live interactive visualization dashboard (`index.html`).

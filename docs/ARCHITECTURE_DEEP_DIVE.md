@@ -71,20 +71,17 @@ Key = (priority_level, creation_time)
 The top $B_{\max}$ messages are transmitted; excess messages exceeding the buffer limit are dropped.
 
 ### 2.4 Rayleigh Fading and Distance-Dependent Path Loss
-Signal power decays with physical distance $d = \|\mathbf{p}_i - \mathbf{p}_j\|$ according to the log-distance path loss model:
+Signal attenuation decays with physical distance $d = \max(1.0, \|\mathbf{p}_i - \mathbf{p}_j\|)$ according to log-distance path loss coupled with stochastic Rayleigh multipath fading:
 ```text
-gamma(d) = gamma_bar * (d / d_0)^(-alpha)
+fade_factor = (d / d_0)^eta
+rayleigh_sample ~ Weibull(alpha=1.0, beta=2.0)
+P_loss_eff(d) = min(0.99, P_loss + (1.0 - exp(-fade_factor / (1.0 + rayleigh_sample))))
 ```
 Where:
-- $\alpha = 2.8$ is the path loss exponent (urban vehicular environment).
-- $d_0 = 1.0\text{ m}$ is the reference distance.
-- $\bar{\gamma} = 25.0\text{ dB}$ is the reference signal-to-noise ratio (SNR).
-
-Multipath interference is modeled using Rayleigh fading, leading to an exponential SNR distribution. The probability of packet decoding failure at distance $d$ is:
-```text
-P_loss(d) = 1 - exp( - gamma_th / gamma(d) )
-```
-Where $\gamma_{\text{th}} = 5.0\text{ dB}$ is the receiver sensitivity threshold.
+- $\eta = 2.7$ is the path loss exponent for vehicular environments.
+- $d_0 = 100.0\text{ m}$ is the reference carrier distance calibrated for DSRC/C-V2X.
+- `rayleigh_sample` models multipath fading via a Weibull random variable ($\beta = 2.0$ yields the Rayleigh distribution).
+- When physical separation $d$ increases, `fade_factor` scales non-linearly, driving the effective packet loss rate toward the 0.99 ceiling.
 
 ---
 

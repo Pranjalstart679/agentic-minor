@@ -55,14 +55,20 @@ class RuleBasedCooperativeAgent(BaseCooperativeAgent):
 
             if is_approaching:
                 time_diff = abs(self_ttc - n_ttc)
-                if time_diff < self.yield_ttc_threshold or n_dist < 10.0:
+                same_lane = (self_state.x * nx + self_state.y * ny) > 0 and abs(math.atan2(self_state.y, self_state.x + 1e-6) - math.atan2(ny, nx + 1e-6)) < 0.2
+                if same_lane and self_dist > n_dist:
+                    gap = self_dist - n_dist
+                    if gap < 8.0 or (gap < 20.0 and n_speed < self_speed - 1.0):
+                        should_yield = True
+                        break
+                elif time_diff < self.yield_ttc_threshold or n_dist < 10.0:
                     if self_dist > n_dist or (abs(self_dist - n_dist) < 0.5 and self.vehicle_id > nid):
                         should_yield = True
                         break
 
         # If yielding, apply strong deceleration; otherwise maintain cruising speed
         if should_yield:
-            action_accel = self.max_decel  # -6.0 m/s^2
+            action_accel = self.max_decel if self_speed > 0.5 else 0.0
         else:
             if self_speed < self.max_speed:
                 action_accel = self.max_accel  # +3.0 m/s^2

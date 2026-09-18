@@ -73,13 +73,19 @@ class CARRAgent(BaseCooperativeAgent):
             is_approaching = (nx * nvx + ny * nvy) < 0
 
             if is_approaching:
-                if abs(self_ttc - n_ttc) < self.yield_ttc_threshold or n_dist < 10.0:
+                same_lane = (self_state.x * nx + self_state.y * ny) > 0 and abs(math.atan2(self_state.y, self_state.x + 1e-6) - math.atan2(ny, nx + 1e-6)) < 0.2
+                if same_lane and self_dist > n_dist:
+                    gap = self_dist - n_dist
+                    if gap < 8.0 or (gap < 20.0 and n_speed < self_speed - 1.0):
+                        should_yield = True
+                        break
+                elif abs(self_ttc - n_ttc) < self.yield_ttc_threshold or n_dist < 10.0:
                     if self_dist > n_dist or (abs(self_dist - n_dist) < 0.5 and self.vehicle_id > nid):
                         should_yield = True
                         break
 
         if should_yield:
-            action_accel = self.max_decel
+            action_accel = self.max_decel if self_speed > 0.5 else 0.0
             msg_priority = PriorityLevel.CRITICAL
             req_ack = True
         else:

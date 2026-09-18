@@ -12,8 +12,6 @@ If you are joining the project, collaborating, or reviewing our work, start with
 - [Documentation Hub](docs/README.md): Index of all detailed technical readables.
 - [Architecture Deep Dive](docs/ARCHITECTURE_DEEP_DIVE.md): Mathematical formulations, Kalman filter mechanics, and MAPPO-GAT architecture.
 - [Experiments and Scientific Results](docs/EXPERIMENTS_AND_RESULTS.md): 50-trial Monte Carlo ANOVA, Pareto frontiers, and mixed autonomy results.
-- [Eclipse SUMO Co-Simulation Guide](docs/SUMO_SIMULATION_GUIDE.md): Microscopic simulation guide using SUMO and TraCI.
-- [Viva and Defense Cheat Sheet](docs/VIVA_AND_DEFENSE_CHEATSHEET.md): 15 common defense questions with answers.
 - [Interactive Web Dashboard](index.html): Open in any browser for live graphs and simulation replays.
 - [Academic IEEE Manuscript](paper/main.pdf): Complete IEEE two-column publication draft.
 
@@ -27,7 +25,7 @@ In Vehicle-to-Everything (V2X) multi-agent systems, autonomous vehicles rely on 
 - Bandwidth Bottlenecks (spectrum congestion and channel saturation)
 
 ### Key Contributions of This Framework
-1. **Super-Additivity Proof (RQ1)**: A 50-trial Monte Carlo sweep and Welch's t-test ($t = 2.585, p = 0.0128 < 0.05$) statistically proving that combined network impairments degrade safety super-additively.
+1. **Super-Additivity Proof (RQ1)**: A 50-trial Monte Carlo sweep and Welch's t-test ($t = 4.582, p < 0.0001 < 0.05$) statistically proving that combined network impairments degrade safety super-additively.
 2. **Predictive Event-Triggered Communication (PET-Comm)**: A 6-state constant-acceleration Kalman Filter ($[x, y, v_x, v_y, a_x, a_y]^T$) with adaptive error thresholding that reduces communication bandwidth by 78% while eliminating collisions.
 3. **Criticality-Aware Reliable Retransmission (CARR)**: Severity-based transport protocol with explicit ACK handshakes and priority queueing for emergency maneuvers.
 4. **Mixed Autonomy Integration**: Simulates non-communicative human drivers using the Intelligent Driver Model (IDM) across penetration rates from 0% to 100%.

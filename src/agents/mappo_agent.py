@@ -124,6 +124,10 @@ class MAPPOAgent(BaseCooperativeAgent):
             mean, std, comm_logit = self.actor(ego_tensor, neighbor_tensor)
             action_accel = float(mean.item())
             comm_prob = float(torch.sigmoid(comm_logit).item())
+            
+        current_speed = math.hypot(self_state.vx, self_state.vy)
+        if current_speed > 12.0 and action_accel > 0:
+            action_accel = 0.0
 
         # 4. Generate outgoing messages if learned communication decision is active
         outgoing_msgs = []

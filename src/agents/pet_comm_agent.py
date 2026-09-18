@@ -86,18 +86,34 @@ class PETCommAgent(BaseCooperativeAgent):
                 is_approaching = (pred_x * pred_vx + pred_y * pred_vy) < 0
 
                 if is_approaching:
-                    if abs(self_ttc - n_ttc) < self.yield_ttc_threshold or n_dist < 10.0:
+                    same_lane = (self_state.x * pred_x + self_state.y * pred_y) > 0 and abs(math.atan2(self_state.y, self_state.x + 1e-6) - math.atan2(pred_y, pred_x + 1e-6)) < 0.2
+                    if same_lane and self_dist > n_dist:
+                        gap = self_dist - n_dist
+                        if gap < 8.0 or (gap < 20.0 and n_speed < self_speed - 1.0):
+                            should_yield = True
+                            break
+                    elif abs(self_ttc - n_ttc) < self.yield_ttc_threshold or n_dist < 10.0:
                         if self_dist > n_dist or (abs(self_dist - n_dist) < 0.5 and self.vehicle_id > nid):
                             should_yield = True
                             break
 
         if should_yield:
-            action_accel = self.max_decel
+            action_accel = self.max_decel if self_speed > 0.5 else 0.0
         else:
             action_accel = self.max_accel if self_speed < self.max_speed else 0.0
 
         # 3. Check Event-Trigger Condition to decide whether to broadcast
-        pos_dev = math.hypot(self_state.x - self.last_sent_pos[0], self_state.y - self.last_sent_pos[1])
+        # Update self estimator to see what neighbors predict
+        if not hasattr(self, 'self_estimator'):
+            self.self_estimator = VehicleTrajectoryEstimator(dt=0.1)
+            self.self_estimator.initialize_state(pos=(self_state.x, self_state.y), vel=(self_state.vx, self_state.vy))
+            pos_dev = 0.0
+            self.last_sent_step = current_step
+        else:
+            # Predict where neighbors think we are
+            pred_x, pred_y = self.self_estimator.predict()
+            pos_dev = math.hypot(self_state.x - pred_x, self_state.y - pred_y)
+
         outgoing_msgs = []
 
         # Calculate effective epsilon: if adaptive, tighten threshold when approaching conflict zone
@@ -116,6 +132,9 @@ class PETCommAgent(BaseCooperativeAgent):
         if pos_dev > effective_epsilon or current_step == 1:
             self.last_sent_pos = (self_state.x, self_state.y)
             self.last_sent_vel = (self_state.vx, self_state.vy)
+            self.last_sent_step = current_step
+            # Reset self estimator because we just transmitted our true state
+            self.self_estimator.initialize_state(pos=(self_state.x, self_state.y), vel=(self_state.vx, self_state.vy))
 
             for target_id in all_vehicle_ids:
                 if target_id != self.vehicle_id:

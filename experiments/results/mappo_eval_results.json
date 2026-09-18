@@ -1,22 +1,22 @@
 {
   "Rule_Baseline": {
-    "collision_rate": 1.0,
-    "avg_speed": 8.68487896391079,
-    "avg_msgs_sent": 441.12
+    "collision_rate": 0.84,
+    "avg_speed": 8.75851373001152,
+    "avg_msgs_sent": 1800.0
   },
   "CARR_Protocol": {
-    "collision_rate": 0.98,
-    "avg_speed": 9.708095118652293,
-    "avg_msgs_sent": 372.56
+    "collision_rate": 0.8,
+    "avg_speed": 7.383116100468388,
+    "avg_msgs_sent": 1294.235294117647
   },
   "PET_Comm": {
-    "collision_rate": 0.14,
-    "avg_speed": 40.499518546669165,
-    "avg_msgs_sent": 934.56
+    "collision_rate": 0.12,
+    "avg_speed": 2.249188148636831,
+    "avg_msgs_sent": 89.92436974789915
   },
   "MAPPO_DeepRL": {
-    "collision_rate": 0.06,
-    "avg_speed": 14.544858166004206,
-    "avg_msgs_sent": 1403.52
+    "collision_rate": 0.0,
+    "avg_speed": 11.65361685629368,
+    "avg_msgs_sent": 1800.0
   }
 }

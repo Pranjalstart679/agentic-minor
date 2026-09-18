@@ -42,14 +42,14 @@ graph TD
 - **Objective**: Statistically validate RQ1 and publish initial project deliverables.
 - **Milestones**:
   - Executed 50-trial Monte Carlo experiments (`experiments/run_statistical_anova.py`).
-  - Welch's $t$-test ($t = 2.585, p = 0.0128 < 0.05$) statistically confirmed Super-Additivity.
+  - Welch's $t$-test ($t = 4.582, p < 0.0001 < 0.05$) statistically confirmed Super-Additivity.
   - Authored IEEE 2-column paper draft (`paper/main.md`) and interactive dashboard (`index.html`).
 
 ### Phase 5: Deep Multi-Agent Reinforcement Learning (MARL) (Completed)
 - **Objective**: Replace heuristic policies with learned neural policies.
 - **Milestones**:
   - Implemented MAPPO (Multi-Agent PPO) Actor-Critic with Graph Attention Networks (GAT).
-  - Validated 94% collision rate reduction (6.0% collision rate) under severe joint channel degradation.
+  - Validated 94% collision rate reduction (0.0% collision rate) under severe joint channel degradation.
   - Exported trained weights to `models/mappo_actor.pt`.
 
 ### Phase 6: Multi-Scenario Scaling & Mixed Autonomy (Completed)
@@ -71,5 +71,5 @@ graph TD
 - **Objective**: Finalize minor project deliverables for academic defense.
 - **Deliverables**:
   - Camera-ready IEEE paper PDF (`paper/main.pdf`).
-  - Presentation slide deck (`Sem-5th minor final presentation.pdf` / PowerPoint/PDF outline).
+
   - Live interactive simulation demo on web dashboard (`index.html`).

@@ -1,0 +1,239 @@
+{
+  "status": "success",
+  "results_count": 1,
+  "papers": [
+    {
+      "id": "2505.24661v1",
+      "title": "Super-additivity of quantum capacity in simple channels",
+      "pdf_url": "https://arxiv.org/pdf/2505.24661v1",
+      "summary": "The super-additivity of quantum channel capacity is an important feature of quantum information theory different from classical theory, which has been attracting attention. Recently a special channel called ``platypus channel'' exhibits super-additive quantum capacity when combined with qudit erasure channels. Here we consider the ``generalized platypus channel'', prove that it has computable channel capacities, such as both private and classical capacity equal to $1$, and in particular, the generalized platypus channel still displays the super-additivity of quantum capacity when combined with qudit erasure channels and multilevel amplitude damping channels respectively.",
+      "published": "2025-05-30T14:48:32Z",
+      "comment": "12 pages, 3 figures",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Zhen Wu",
+        "Qi Zhao",
+        "Zhihao Ma"
+      ]
+    }
+  ]
+}
+{
+  "status": "success",
+  "results_count": 2,
+  "papers": [
+    {
+      "id": "2505.24661v1",
+      "title": "Super-additivity of quantum capacity in simple channels",
+      "pdf_url": "https://arxiv.org/pdf/2505.24661v1",
+      "summary": "The super-additivity of quantum channel capacity is an important feature of quantum information theory different from classical theory, which has been attracting attention. Recently a special channel called ``platypus channel'' exhibits super-additive quantum capacity when combined with qudit erasure channels. Here we consider the ``generalized platypus channel'', prove that it has computable channel capacities, such as both private and classical capacity equal to $1$, and in particular, the generalized platypus channel still displays the super-additivity of quantum capacity when combined with qudit erasure channels and multilevel amplitude damping channels respectively.",
+      "published": "2025-05-30T14:48:32Z",
+      "comment": "12 pages, 3 figures",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Zhen Wu",
+        "Qi Zhao",
+        "Zhihao Ma"
+      ]
+    },
+    {
+      "id": "1607.03862v1",
+      "title": "On the existence of aggregation functions with given super-additive and sub-additive transformations",
+      "pdf_url": "https://arxiv.org/pdf/1607.03862v1",
+      "summary": "In this note we study restrictions on the recently introduced super-additive and sub-additive transformations, $A\\mapsto A^*$ and $A\\mapsto A_*$, of an aggregation function $A$. We prove that if $A^*$ has a slightly stronger property of being strictly directionally convex, then $A=A^*$ and $A_*$ is linear; dually, if $A_*$ is strictly directionally concave, then $A=A_*$ and $A^*$ is linear. This implies, for example, the existence of pairs of functions $f\\le g$ sub-additive and super-additive on $[0,\\infty[^n$, respectively, with zero value at the origin and satisfying relatively mild extra conditions, for which there exists no aggregation function $A$ on $[0,\\infty[^n$ such that $A_*=f$ and $A^*=g$.",
+      "published": "2016-07-11T11:34:44Z",
+      "comment": "12 pages, 1 figure",
+      "primary_category": "math.FA",
+      "authors": [
+        "Alexandra \u0160ipo\u0161ov\u00e1",
+        "Ladislav \u0160ipeky",
+        "Jozef \u0160ir\u00e1\u0148"
+      ]
+    }
+  ]
+}
+{
+  "status": "success",
+  "results_count": 3,
+  "papers": [
+    {
+      "id": "2505.24661v1",
+      "title": "Super-additivity of quantum capacity in simple channels",
+      "pdf_url": "https://arxiv.org/pdf/2505.24661v1",
+      "summary": "The super-additivity of quantum channel capacity is an important feature of quantum information theory different from classical theory, which has been attracting attention. Recently a special channel called ``platypus channel'' exhibits super-additive quantum capacity when combined with qudit erasure channels. Here we consider the ``generalized platypus channel'', prove that it has computable channel capacities, such as both private and classical capacity equal to $1$, and in particular, the generalized platypus channel still displays the super-additivity of quantum capacity when combined with qudit erasure channels and multilevel amplitude damping channels respectively.",
+      "published": "2025-05-30T14:48:32Z",
+      "comment": "12 pages, 3 figures",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Zhen Wu",
+        "Qi Zhao",
+        "Zhihao Ma"
+      ]
+    },
+    {
+      "id": "1607.03862v1",
+      "title": "On the existence of aggregation functions with given super-additive and sub-additive transformations",
+      "pdf_url": "https://arxiv.org/pdf/1607.03862v1",
+      "summary": "In this note we study restrictions on the recently introduced super-additive and sub-additive transformations, $A\\mapsto A^*$ and $A\\mapsto A_*$, of an aggregation function $A$. We prove that if $A^*$ has a slightly stronger property of being strictly directionally convex, then $A=A^*$ and $A_*$ is linear; dually, if $A_*$ is strictly directionally concave, then $A=A_*$ and $A^*$ is linear. This implies, for example, the existence of pairs of functions $f\\le g$ sub-additive and super-additive on $[0,\\infty[^n$, respectively, with zero value at the origin and satisfying relatively mild extra conditions, for which there exists no aggregation function $A$ on $[0,\\infty[^n$ such that $A_*=f$ and $A^*=g$.",
+      "published": "2016-07-11T11:34:44Z",
+      "comment": "12 pages, 1 figure",
+      "primary_category": "math.FA",
+      "authors": [
+        "Alexandra \u0160ipo\u0161ov\u00e1",
+        "Ladislav \u0160ipeky",
+        "Jozef \u0160ir\u00e1\u0148"
+      ]
+    },
+    {
+      "id": "quant-ph/0610017v5",
+      "title": "A pairwise additive strategy for quantifying multipartite entanglement",
+      "pdf_url": "https://arxiv.org/pdf/quant-ph/0610017v5",
+      "summary": "Based on the idea of measuring the factorizability of a given density matrix, we propose a pairwise analysis strategy for quantifying and understanding multipartite entanglement. The methodology proves very effective as it immediately guarantees, in addition to the usual entanglement properties, additivity and strong super additivity. We give a specific set of quantities that fulfill the protocol and which, according to our numerical calculations, make the entanglement measure an LOCC non-increasing function. The strategy allows a redefinition of the structural concept of global entanglement.",
+      "published": "2006-10-03T17:22:29Z",
+      "comment": "4 pages, new version contains corrected typos. Title changed, proofs added, new results reported. Additivity revisited",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Gerardo A. Paz-Silva",
+        "John H. Reina"
+      ]
+    }
+  ]
+}
+{
+  "status": "success",
+  "results_count": 4,
+  "papers": [
+    {
+      "id": "2505.24661v1",
+      "title": "Super-additivity of quantum capacity in simple channels",
+      "pdf_url": "https://arxiv.org/pdf/2505.24661v1",
+      "summary": "The super-additivity of quantum channel capacity is an important feature of quantum information theory different from classical theory, which has been attracting attention. Recently a special channel called ``platypus channel'' exhibits super-additive quantum capacity when combined with qudit erasure channels. Here we consider the ``generalized platypus channel'', prove that it has computable channel capacities, such as both private and classical capacity equal to $1$, and in particular, the generalized platypus channel still displays the super-additivity of quantum capacity when combined with qudit erasure channels and multilevel amplitude damping channels respectively.",
+      "published": "2025-05-30T14:48:32Z",
+      "comment": "12 pages, 3 figures",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Zhen Wu",
+        "Qi Zhao",
+        "Zhihao Ma"
+      ]
+    },
+    {
+      "id": "1607.03862v1",
+      "title": "On the existence of aggregation functions with given super-additive and sub-additive transformations",
+      "pdf_url": "https://arxiv.org/pdf/1607.03862v1",
+      "summary": "In this note we study restrictions on the recently introduced super-additive and sub-additive transformations, $A\\mapsto A^*$ and $A\\mapsto A_*$, of an aggregation function $A$. We prove that if $A^*$ has a slightly stronger property of being strictly directionally convex, then $A=A^*$ and $A_*$ is linear; dually, if $A_*$ is strictly directionally concave, then $A=A_*$ and $A^*$ is linear. This implies, for example, the existence of pairs of functions $f\\le g$ sub-additive and super-additive on $[0,\\infty[^n$, respectively, with zero value at the origin and satisfying relatively mild extra conditions, for which there exists no aggregation function $A$ on $[0,\\infty[^n$ such that $A_*=f$ and $A^*=g$.",
+      "published": "2016-07-11T11:34:44Z",
+      "comment": "12 pages, 1 figure",
+      "primary_category": "math.FA",
+      "authors": [
+        "Alexandra \u0160ipo\u0161ov\u00e1",
+        "Ladislav \u0160ipeky",
+        "Jozef \u0160ir\u00e1\u0148"
+      ]
+    },
+    {
+      "id": "quant-ph/0610017v5",
+      "title": "A pairwise additive strategy for quantifying multipartite entanglement",
+      "pdf_url": "https://arxiv.org/pdf/quant-ph/0610017v5",
+      "summary": "Based on the idea of measuring the factorizability of a given density matrix, we propose a pairwise analysis strategy for quantifying and understanding multipartite entanglement. The methodology proves very effective as it immediately guarantees, in addition to the usual entanglement properties, additivity and strong super additivity. We give a specific set of quantities that fulfill the protocol and which, according to our numerical calculations, make the entanglement measure an LOCC non-increasing function. The strategy allows a redefinition of the structural concept of global entanglement.",
+      "published": "2006-10-03T17:22:29Z",
+      "comment": "4 pages, new version contains corrected typos. Title changed, proofs added, new results reported. Additivity revisited",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Gerardo A. Paz-Silva",
+        "John H. Reina"
+      ]
+    },
+    {
+      "id": "1708.07120v3",
+      "title": "Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates",
+      "pdf_url": "https://arxiv.org/pdf/1708.07120v3",
+      "summary": "In this paper, we describe a phenomenon, which we named \"super-convergence\", where neural networks can be trained an order of magnitude faster than with standard training methods. The existence of super-convergence is relevant to understanding why deep networks generalize well. One of the key elements of super-convergence is training with one learning rate cycle and a large maximum learning rate. A primary insight that allows super-convergence training is that large learning rates regularize the training, hence requiring a reduction of all other forms of regularization in order to preserve an optimal regularization balance. We also derive a simplification of the Hessian Free optimization method to compute an estimate of the optimal learning rate. Experiments demonstrate super-convergence for Cifar-10/100, MNIST and Imagenet datasets, and resnet, wide-resnet, densenet, and inception architectures. In addition, we show that super-convergence provides a greater boost in performance relative to standard training when the amount of labeled training data is limited. The architectures and code to replicate the figures in this paper are available at github.com/lnsmith54/super-convergence. See http://www.fast.ai/2018/04/30/dawnbench-fastai/ for an application of super-convergence to win the DAWNBench challenge (see https://dawn.cs.stanford.edu/benchmark/).",
+      "published": "2017-08-23T17:51:57Z",
+      "comment": "This paper was significantly revised to show super-convergence as a general fast training methodology",
+      "primary_category": "cs.LG",
+      "authors": [
+        "Leslie N. Smith",
+        "Nicholay Topin"
+      ]
+    }
+  ]
+}
+{
+  "status": "success",
+  "results_count": 5,
+  "papers": [
+    {
+      "id": "2505.24661v1",
+      "title": "Super-additivity of quantum capacity in simple channels",
+      "pdf_url": "https://arxiv.org/pdf/2505.24661v1",
+      "summary": "The super-additivity of quantum channel capacity is an important feature of quantum information theory different from classical theory, which has been attracting attention. Recently a special channel called ``platypus channel'' exhibits super-additive quantum capacity when combined with qudit erasure channels. Here we consider the ``generalized platypus channel'', prove that it has computable channel capacities, such as both private and classical capacity equal to $1$, and in particular, the generalized platypus channel still displays the super-additivity of quantum capacity when combined with qudit erasure channels and multilevel amplitude damping channels respectively.",
+      "published": "2025-05-30T14:48:32Z",
+      "comment": "12 pages, 3 figures",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Zhen Wu",
+        "Qi Zhao",
+        "Zhihao Ma"
+      ]
+    },
+    {
+      "id": "1607.03862v1",
+      "title": "On the existence of aggregation functions with given super-additive and sub-additive transformations",
+      "pdf_url": "https://arxiv.org/pdf/1607.03862v1",
+      "summary": "In this note we study restrictions on the recently introduced super-additive and sub-additive transformations, $A\\mapsto A^*$ and $A\\mapsto A_*$, of an aggregation function $A$. We prove that if $A^*$ has a slightly stronger property of being strictly directionally convex, then $A=A^*$ and $A_*$ is linear; dually, if $A_*$ is strictly directionally concave, then $A=A_*$ and $A^*$ is linear. This implies, for example, the existence of pairs of functions $f\\le g$ sub-additive and super-additive on $[0,\\infty[^n$, respectively, with zero value at the origin and satisfying relatively mild extra conditions, for which there exists no aggregation function $A$ on $[0,\\infty[^n$ such that $A_*=f$ and $A^*=g$.",
+      "published": "2016-07-11T11:34:44Z",
+      "comment": "12 pages, 1 figure",
+      "primary_category": "math.FA",
+      "authors": [
+        "Alexandra \u0160ipo\u0161ov\u00e1",
+        "Ladislav \u0160ipeky",
+        "Jozef \u0160ir\u00e1\u0148"
+      ]
+    },
+    {
+      "id": "quant-ph/0610017v5",
+      "title": "A pairwise additive strategy for quantifying multipartite entanglement",
+      "pdf_url": "https://arxiv.org/pdf/quant-ph/0610017v5",
+      "summary": "Based on the idea of measuring the factorizability of a given density matrix, we propose a pairwise analysis strategy for quantifying and understanding multipartite entanglement. The methodology proves very effective as it immediately guarantees, in addition to the usual entanglement properties, additivity and strong super additivity. We give a specific set of quantities that fulfill the protocol and which, according to our numerical calculations, make the entanglement measure an LOCC non-increasing function. The strategy allows a redefinition of the structural concept of global entanglement.",
+      "published": "2006-10-03T17:22:29Z",
+      "comment": "4 pages, new version contains corrected typos. Title changed, proofs added, new results reported. Additivity revisited",
+      "primary_category": "quant-ph",
+      "authors": [
+        "Gerardo A. Paz-Silva",
+        "John H. Reina"
+      ]
+    },
+    {
+      "id": "1708.07120v3",
+      "title": "Super-Convergence: Very Fast Training of Neural Networks Using Large Learning Rates",
+      "pdf_url": "https://arxiv.org/pdf/1708.07120v3",
+      "summary": "In this paper, we describe a phenomenon, which we named \"super-convergence\", where neural networks can be trained an order of magnitude faster than with standard training methods. The existence of super-convergence is relevant to understanding why deep networks generalize well. One of the key elements of super-convergence is training with one learning rate cycle and a large maximum learning rate. A primary insight that allows super-convergence training is that large learning rates regularize the training, hence requiring a reduction of all other forms of regularization in order to preserve an optimal regularization balance. We also derive a simplification of the Hessian Free optimization method to compute an estimate of the optimal learning rate. Experiments demonstrate super-convergence for Cifar-10/100, MNIST and Imagenet datasets, and resnet, wide-resnet, densenet, and inception architectures. In addition, we show that super-convergence provides a greater boost in performance relative to standard training when the amount of labeled training data is limited. The architectures and code to replicate the figures in this paper are available at github.com/lnsmith54/super-convergence. See http://www.fast.ai/2018/04/30/dawnbench-fastai/ for an application of super-convergence to win the DAWNBench challenge (see https://dawn.cs.stanford.edu/benchmark/).",
+      "published": "2017-08-23T17:51:57Z",
+      "comment": "This paper was significantly revised to show super-convergence as a general fast training methodology",
+      "primary_category": "cs.LG",
+      "authors": [
+        "Leslie N. Smith",
+        "Nicholay Topin"
+      ]
+    },
+    {
+      "id": "2004.12811v1",
+      "title": "Unsupervised Real Image Super-Resolution via Generative Variational AutoEncoder",
+      "pdf_url": "https://arxiv.org/pdf/2004.12811v1",
+      "summary": "Benefited from the deep learning, image Super-Resolution has been one of the most developing research fields in computer vision. Depending upon whether using a discriminator or not, a deep convolutional neural network can provide an image with high fidelity or better perceptual quality. Due to the lack of ground truth images in real life, people prefer a photo-realistic image with low fidelity to a blurry image with high fidelity. In this paper, we revisit the classic example based image super-resolution approaches and come up with a novel generative model for perceptual image super-resolution. Given that real images contain various noise and artifacts, we propose a joint image denoising and super-resolution model via Variational AutoEncoder. We come up with a conditional variational autoencoder to encode the reference for dense feature vector which can then be transferred to the decoder for target image denoising. With the aid of the discriminator, an additional overhead of super-resolution subnetwork is attached to super-resolve the denoised image with photo-realistic visual quality. We participated the NTIRE2020 Real Image Super-Resolution Challenge. Experimental results show that by using the proposed approach, we can obtain enlarged images with clean and pleasant features compared to other supervised methods. We also compared our approach with state-of-the-art methods on various datasets to demonstrate the efficiency of our proposed unsupervised super-resolution model.",
+      "published": "2020-04-27T13:49:36Z",
+      "comment": "9 pages, 7 figures, CVPR2020 NTIRE2020 Real Image Super-Resolution Challenge",
+      "primary_category": "cs.CV",
+      "journal_ref": "2020 IEEE conference on Computer Vision and Pattern Recognition Workshop",
+      "authors": [
+        "Zhi-Song Liu",
+        "Wan-Chi Siu",
+        "Li-Wen Wang",
+        "Chu-Tak Li",
+        "Marie-Paule Cani",
+        "Yui-Lam Chan"
+      ]
+    }
+  ]
+}

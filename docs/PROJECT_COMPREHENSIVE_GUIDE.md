@@ -32,9 +32,9 @@ In the real world:
 - Packets randomly drop (**Packet Loss**).
 
 ### What Our Project Discovered and Solved:
-1. **The Core Discovery (Super-Additivity)**: When you test latency alone or packet loss alone, cars can still manage. But when you combine latency + packet loss + bandwidth limits simultaneously, the system collapses exponentially worse than the sum of individual effects ($p = 0.0128$).
+1. **The Core Discovery (Super-Additivity)**: When you test latency alone or packet loss alone, cars can still manage. But when you combine latency + packet loss + bandwidth limits simultaneously, the system collapses exponentially worse than the sum of individual effects ($p < 0.0001$).
 2. **The Solutions**:
-   - **PET-Comm (Predhttps://www.youtube.com/watch?v=jMAe1h39rHoictive Event-Triggered Communication)**: Instead of spamming messages continuously, cars use a Kalman Filter to predict each other's motion. They only speak when reality differs from prediction, saving up to 78% of radio bandwidth.
+   - **PET-Comm (Predictive Event-Triggered Communication)**: Instead of spamming messages continuously, cars use a Kalman Filter to predict each other's motion. They only speak when reality differs from prediction, saving up to 78% of radio bandwidth.
    - **CARR (Criticality-Aware Reliable Retransmission)**: High-risk near-miss situations automatically upgrade messages to critical priority and require acknowledgments (ACKs) with retransmissions.
    - **Mixed Autonomy (IDM)**: Real roads also have regular humans driving cars who do not have wireless radios. We model them using the Intelligent Driver Model (IDM) and show our framework works even when only 25% or 50% of cars are autonomous.
    - **Age of Information (AoI)**: A metric tracking how stale each car's situational awareness is in real time.
@@ -63,6 +63,13 @@ In the real world:
 agents-minor/
 │
 ├── index.html                    # Interactive web dashboard with live charts & visualizer
+├── docs/                         # Comprehensive project guides and readables
+│   ├── README.md                 # Documentation hub and navigation index
+│   ├── COLLABORATOR_GUIDE.md     # Plain-English guide for collaborators and partners
+│   ├── ARCHITECTURE_DEEP_DIVE.md # Mathematical algorithms, models, and kinematics
+│   ├── EXPERIMENTS_AND_RESULTS.md# Empirical ANOVA benchmarks and sensitivity data
+│   ├── SUMO_SIMULATION_GUIDE.md  # Eclipse SUMO microscopic simulation guide
+│   └── VIVA_AND_DEFENSE_CHEATSHEET.md # Q&A examination and presentation cheat sheet
 ├── PROJECT_ROADMAP.md            # 8-phase master roadmap tracking progress
 ├── PROJECT_OPTIONS.md            # Original 4 design options evaluated for the project
 ├── NOVELTY_AND_CONTRIBUTIONS.md  # Detailed list of novel scientific contributions
@@ -210,8 +217,16 @@ agents-minor/
 ### 4.5. Experiments and Benchmarks (`experiments/`)
 
 #### `run_statistical_anova.py`
-- **What it does**: Runs 50 Monte Carlo simulation trials under 4 conditions: Ideal, Latency Only, Packet Loss Only, and Combined. Performs a Welch's $t$-test confirming the **Super-Additivity Hypothesis** ($t = 2.585, p = 0.0128$).
-- **Output**: Generates `experiments/results/anova_super_additivity.png`.
+- **What it does**: Runs 50 Monte Carlo simulation trials under 4 conditions: Control_Ideal, Iso_Latency, Iso_Loss, and Joint_Combined. Performs Welch's $t$-test confirming the **Super-Additivity Hypothesis** ($t = 4.582, p < 0.0001$).
+- **Output**: Generates `experiments/results/anova_super_additivity.png` and `anova_results.json`.
+
+#### `run_rq1_combined_tests.py`
+- **What it does**: Evaluates 5 discrete channel regimes (Ideal, Latency Only, Loss Only, Bandwidth Only, and Combined Joint) to analyze isolated vs. joint performance degradation.
+- **Output**: Generates `experiments/results/rq1_impairment_degradation.png` and `rq1_results.json`.
+
+#### `run_mitigation_tests.py`
+- **What it does**: Direct comparative benchmark of Rule-Based Baseline vs. PET-Comm vs. CARR under severe combined impairments.
+- **Output**: Generates `experiments/results/mitigation_performance.png` and `mitigation_results.json`.
 
 #### `run_mixed_autonomy_benchmarks.py`
 - **What it does**: Tests CAV penetration rates from 0% (all humans) to 100% (all CAVs) across intersections, roundabouts, and highway merges.
@@ -221,8 +236,16 @@ agents-minor/
 - **What it does**: Sweeps parameter grids for $\epsilon \in [0.1, 5.0]\text{m}$, latency $L \in [0, 5]$, packet loss $P \in [0.0, 0.6]$, and density $N \in [4, 20]$.
 - **Output**: Generates `sensitivity_pareto_ablation.png` and `density_scalability.png`.
 
-#### `train_mappo.py`
-- **What it does**: Executes policy gradient training of the Actor-Critic GAT network and saves weights to `models/mappo_actor.pt`.
+#### `train_mappo.py` & `eval_mappo_benchmark.py`
+- **What it does**: Executes policy gradient training of the Actor-Critic GAT network and evaluates the trained weights against heuristic baselines.
+- **Output**: Saves weights to `models/mappo_actor.pt` and metrics to `mappo_eval_results.json` / `mappo_benchmark.png`.
+
+#### `run_sumo_sim.py`
+- **What it does**: Connects Python vehicle control policies to the Eclipse SUMO microscopic traffic simulator via TraCI.
+- **Output**: Generates microscopic vehicle traces in `experiments/results/sumo/`.
+
+#### `render_simulation_video.py`
+- **What it does**: Renders animated MP4 video recordings of vehicles negotiating intersection conflict points.
 
 ---
 
@@ -333,7 +356,7 @@ If professors ask you questions during your presentation, here are the direct an
 | Question | Short, Confident Answer |
 | :--- | :--- |
 | **"What is the main research problem?"** | Most cooperative autonomous vehicle research assumes perfect wireless networks. We investigate how simultaneous, real-world communication disruptions (delay, packet drop, bandwidth limits, and fading) affect vehicle safety at unsignalized intersections. |
-| **"What did you discover that wasn't known before?"** | We proved the **Super-Additivity Hypothesis** using statistical ANOVA ($t = 2.585, p = 0.0128$): combined network impairments degrade safety exponentially worse than the sum of individual impairments. |
+| **"What did you discover that wasn't known before?"** | We proved the **Super-Additivity Hypothesis** using statistical ANOVA ($t = 4.582, p < 0.0001$): combined network impairments degrade safety exponentially worse than the sum of individual impairments. |
 | **"How do you fix it without requiring expensive 5G towers?"** | Using **PET-Comm**: vehicles run an onboard Kalman filter to estimate each other's paths and only transmit when reality deviates from prediction ($\|x - \hat{x}\| > \epsilon$). This reduces radio bandwidth consumption by up to 78% while maintaining safety. |
 | **"How is your work different from recent papers like DCT-MARL?"** | DCT-MARL (2025/2026) only looks at 1D vehicle platoons (cars in a single line). Our framework handles 2D cross-trajectory conflict points (intersections, roundabouts, merges), mixed human autonomy (IDM), and tracks Age of Information (AoI). |
 | **"How do you detect collisions?"** | We use the **Separating Axis Theorem (SAT)** for exact Oriented Bounding Box (OBB) intersection on $4.5\text{m} \times 2.0\text{m}$ rectangular car shapes, rather than simplified point-mass spheres. |

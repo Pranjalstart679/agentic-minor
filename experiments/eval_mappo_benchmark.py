@@ -62,6 +62,7 @@ def eval_mappo_suite(num_episodes: int = 50, seed: int = 200) -> Dict[str, dict]
             all_vids = list(env.vehicles.keys())
             delivered_msgs: List = []
 
+            episode_had_collision = False
             for step in range(1, 120):
                 actions = {}
                 outgoing_all = []
@@ -86,8 +87,10 @@ def eval_mappo_suite(num_episodes: int = 50, seed: int = 200) -> Dict[str, dict]
 
                 vstates, delivered_msgs, new_collisions = env.step(actions)
                 if new_collisions:
-                    collisions_count += 1
-                    break
+                    episode_had_collision = True
+                    
+            if episode_had_collision:
+                collisions_count += 1
 
             metrics = env.get_metrics()
             mean_speeds_list.append(metrics["mean_speed"])

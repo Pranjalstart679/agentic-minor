@@ -1,7 +1,7 @@
 ---
 name: reviewer
 description: Quality assurance and diff auditor. Compares code changes against original task requirements, verifies test coverage, and identifies bugs or security vulnerabilities.
-model: gemini-2.5-flash
+model: gemini-3.8-flash
 tools:
   - view_file
   - grep_search

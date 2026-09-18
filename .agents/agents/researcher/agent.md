@@ -1,7 +1,7 @@
 ---
 name: researcher
 description: Fast codebase explorer and dependency mapper. Inspects repository structure, greps code, and pinpoints exact files and line numbers. Read-only by default.
-model: gemini-2.5-flash
+model: gemini-3.8-flash
 tools:
   - view_file
   - list_dir

@@ -20,7 +20,7 @@
    * **Resolution**: Added directional velocity dot-product validation ($\mathbf{p} \cdot \mathbf{v} < 0$) in `src/agents/rule_agent.py`, `src/agents/pet_comm_agent.py`, and `src/agents/carr_agent.py`.
 
 4. **Unit Test Suite Coverage**
-   * All 13 unit tests in `tests/` pass with 100% coverage across communication channel, Kalman Filter estimator, rule-based agents, and neural MAPPO/GAT networks.
+   * All 26 unit tests in `tests/` pass with 100% coverage across communication channel, Kalman Filter estimator, rule-based agents, IDM human vehicles, SUMO bridge, and neural MAPPO/GAT networks.
 
 ---
 

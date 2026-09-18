@@ -1,7 +1,7 @@
 ---
 name: orchestrator
 description: Front-facing router and project manager that classifies requests, executes simple edits directly, delegates complex tasks via scoped briefs, and strictly budgets Claude escalations.
-model: gemini-2.5-pro
+model: gemini-3.1-pro
 tools:
   - run_command
   - view_file
